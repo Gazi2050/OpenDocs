@@ -3,6 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/ui/themes";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
+import Provider from "./Provider";
 import "./globals.css";
 
 const inter = Inter({
@@ -37,7 +38,9 @@ export default function RootLayout({
       }}
     >
       <html lang="en" className={cn(inter.variable, "h-full antialiased")} suppressHydrationWarning>
-        <body className="min-h-full flex flex-col font-sans">{children}</body>
+        <body className="min-h-full flex flex-col font-sans">
+          <Provider>{children}</Provider>
+        </body>
       </html>
     </ClerkProvider>
   );
