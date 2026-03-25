@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 import { liveblocks } from "@/lib/liveblocks";
 import { getAccessType, parseStringify } from "@/lib/utils";
-import type { CreateDocumentParams, ShareDocumentParams } from "@/types/livedocs";
+import type { CreateDocumentParams, ShareDocumentParams } from "@/types/opendocs";
 
 export async function createDocument({ userId, email }: CreateDocumentParams) {
   const roomId = nanoid();

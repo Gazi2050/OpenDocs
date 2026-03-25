@@ -1,7 +1,7 @@
 "use client";
 
 import { createDocument } from "@/lib/actions/room.actions";
-import type { AddDocumentBtnProps } from "@/types/livedocs";
+import type { AddDocumentBtnProps } from "@/types/opendocs";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

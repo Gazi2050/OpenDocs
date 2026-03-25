@@ -3,7 +3,7 @@
 import Comments from "@/components/Comments";
 import { DeleteModal } from "@/components/DeleteModal";
 import Loader from "@/components/Loader";
-import type { UserType } from "@/types/livedocs";
+import type { UserType } from "@/types/opendocs";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { LexicalCollaboration } from "@lexical/react/LexicalCollaborationContext";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";

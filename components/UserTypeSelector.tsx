@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { UserType, UserTypeSelectorParams } from "@/types/livedocs";
+import type { UserType, UserTypeSelectorParams } from "@/types/opendocs";
 
 export default function UserTypeSelector({
   userType,

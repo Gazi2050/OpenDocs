@@ -88,7 +88,7 @@
   }
 }
 
-/* LiveDocs default: dark shell aligned with old app */
+/* OpenDocs: dark shell aligned with migrated app */
 :root {
   --background: #09111f;
   --foreground: #fff;

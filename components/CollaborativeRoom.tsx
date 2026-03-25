@@ -2,7 +2,7 @@
 
 import { Editor } from "@/components/editor/Editor";
 import { updateDocument } from "@/lib/actions/room.actions";
-import type { CollaborativeRoomProps } from "@/types/livedocs";
+import type { CollaborativeRoomProps } from "@/types/opendocs";
 import { SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 import { ClientSideSuspense, RoomProvider } from "@liveblocks/react/suspense";
 import Image from "next/image";

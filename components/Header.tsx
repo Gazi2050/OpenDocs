@@ -1,26 +1,34 @@
 import { cn } from "@/lib/utils";
-import type { HeaderProps } from "@/types/livedocs";
+import type { HeaderProps } from "@/types/opendocs";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function Header({ children, className }: HeaderProps) {
   return (
     <div className={cn("header", className)}>
-      <Link href="/" className="md:flex-1">
+      <Link
+        href="/"
+        className="flex items-center gap-2 md:flex-1 md:gap-3"
+      >
         <Image
-          src="/assets/icons/logo.svg"
-          alt="Logo with name"
-          width={120}
-          height={32}
-          className="hidden md:block"
+          src="/assets/images/logo01.png"
+          alt=""
+          width={160}
+          height={48}
+          className="hidden h-9 w-auto md:block"
+          priority
         />
         <Image
-          src="/assets/icons/logo-icon.svg"
-          alt="Logo"
-          width={32}
-          height={32}
-          className="mr-2 md:hidden"
+          src="/assets/images/logo01.png"
+          alt=""
+          width={40}
+          height={40}
+          className="size-8 object-contain md:hidden"
+          priority
         />
+        <span className="text-lg font-semibold tracking-tight text-white md:text-xl">
+          OpenDocs
+        </span>
       </Link>
       {children}
     </div>

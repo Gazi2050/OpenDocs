@@ -1,7 +1,7 @@
 "use client";
 
 import { removeCollaborator, updateDocumentAccess } from "@/lib/actions/room.actions";
-import type { CollaboratorProps, UserType } from "@/types/livedocs";
+import type { CollaboratorProps, UserType } from "@/types/opendocs";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import type { DeleteModalProps } from "@/types/livedocs";
+import type { DeleteModalProps } from "@/types/opendocs";
 import Image from "next/image";
 import { useState } from "react";
 

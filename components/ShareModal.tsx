@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import type { ShareDocumentDialogProps, User, UserType } from "@/types/livedocs";
+import type { ShareDocumentDialogProps, User, UserType } from "@/types/opendocs";
 import { useSelf } from "@liveblocks/react/suspense";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

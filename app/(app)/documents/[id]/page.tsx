@@ -1,7 +1,7 @@
 import CollaborativeRoom from "@/components/CollaborativeRoom";
 import { getDocument } from "@/lib/actions/room.actions";
 import { getClerkUsers } from "@/lib/actions/user.actions";
-import type { RoomMetadata, User, UserType } from "@/types/livedocs";
+import type { RoomMetadata, User, UserType } from "@/types/opendocs";
 import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
