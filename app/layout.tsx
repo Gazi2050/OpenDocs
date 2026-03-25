@@ -16,7 +16,6 @@ export const metadata: Metadata = {
   description: "Collaborative documents",
 };
 
-/** Must match `app/(auth)/sign-in` and `app/(auth)/sign-up` routes. */
 const signInUrl = "/sign-in";
 const signUpUrl = "/sign-up";
 
@@ -37,7 +36,11 @@ export default function RootLayout({
         },
       }}
     >
-      <html lang="en" className={cn(inter.variable, "h-full antialiased")} suppressHydrationWarning>
+      <html
+        lang="en"
+        className={cn(inter.variable, "h-full antialiased")}
+        suppressHydrationWarning
+      >
         <body className="min-h-full flex flex-col font-sans">
           <Provider>{children}</Provider>
         </body>
