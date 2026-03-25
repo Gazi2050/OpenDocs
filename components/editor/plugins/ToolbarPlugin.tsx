@@ -35,6 +35,21 @@ import {
   useState,
   useSyncExternalStore,
 } from 'react';
+import {
+  AlignCenter,
+  AlignJustify,
+  AlignLeft,
+  AlignRight,
+  Bold,
+  Heading1,
+  Heading2,
+  Heading3,
+  Italic,
+  Redo2,
+  Strikethrough,
+  Underline,
+  Undo2,
+} from 'lucide-react';
 
 const LowPriority = 1;
 
@@ -133,8 +148,9 @@ export default function ToolbarPlugin() {
         }}
         className="toolbar-item spaced"
         aria-label="Undo"
+        type="button"
       >
-        <i className="format undo" />
+        <Undo2 className="toolbar-icon" aria-hidden />
       </button>
       <button
         disabled={!canRedo}
@@ -143,110 +159,125 @@ export default function ToolbarPlugin() {
         }}
         className="toolbar-item"
         aria-label="Redo"
+        type="button"
       >
-        <i className="format redo" />
+        <Redo2 className="toolbar-icon" aria-hidden />
       </button>
       <Divider />
       <button
+        type="button"
         onClick={() => editor.update(() => toggleBlock('h1'))}
         data-active={activeBlock === 'h1' ? '' : undefined}
         className={
           'toolbar-item spaced ' + (activeBlock === 'h1' ? 'active' : '')
         }
+        aria-label="Heading 1"
       >
-        <i className="format h1" />
+        <Heading1 className="toolbar-icon" aria-hidden />
       </button>
       <button
+        type="button"
         onClick={() => editor.update(() => toggleBlock('h2'))}
         data-active={activeBlock === 'h2' ? '' : undefined}
         className={
           'toolbar-item spaced ' + (activeBlock === 'h2' ? 'active' : '')
         }
+        aria-label="Heading 2"
       >
-        <i className="format h2" />
+        <Heading2 className="toolbar-icon" aria-hidden />
       </button>
       <button
+        type="button"
         onClick={() => editor.update(() => toggleBlock('h3'))}
         data-active={activeBlock === 'h3' ? '' : undefined}
         className={
           'toolbar-item spaced ' + (activeBlock === 'h3' ? 'active' : '')
         }
+        aria-label="Heading 3"
       >
-        <i className="format h3" />
+        <Heading3 className="toolbar-icon" aria-hidden />
       </button>
       <Divider />
       <button
+        type="button"
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold');
         }}
         className={'toolbar-item spaced ' + (isBold ? 'active' : '')}
         aria-label="Format Bold"
       >
-        <i className="format bold" />
+        <Bold className="toolbar-icon" aria-hidden />
       </button>
       <button
+        type="button"
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic');
         }}
         className={'toolbar-item spaced ' + (isItalic ? 'active' : '')}
         aria-label="Format Italics"
       >
-        <i className="format italic" />
+        <Italic className="toolbar-icon" aria-hidden />
       </button>
       <button
+        type="button"
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline');
         }}
         className={'toolbar-item spaced ' + (isUnderline ? 'active' : '')}
         aria-label="Format Underline"
       >
-        <i className="format underline" />
+        <Underline className="toolbar-icon" aria-hidden />
       </button>
       <button
+        type="button"
         onClick={() => {
           editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough');
         }}
         className={'toolbar-item spaced ' + (isStrikethrough ? 'active' : '')}
         aria-label="Format Strikethrough"
       >
-        <i className="format strikethrough" />
+        <Strikethrough className="toolbar-icon" aria-hidden />
       </button>
       <Divider />
       <button
+        type="button"
         onClick={() => {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'left');
         }}
         className="toolbar-item spaced"
         aria-label="Left Align"
       >
-        <i className="format left-align" />
+        <AlignLeft className="toolbar-icon" aria-hidden />
       </button>
       <button
+        type="button"
         onClick={() => {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'center');
         }}
         className="toolbar-item spaced"
         aria-label="Center Align"
       >
-        <i className="format center-align" />
+        <AlignCenter className="toolbar-icon" aria-hidden />
       </button>
       <button
+        type="button"
         onClick={() => {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'right');
         }}
         className="toolbar-item spaced"
         aria-label="Right Align"
       >
-        <i className="format right-align" />
+        <AlignRight className="toolbar-icon" aria-hidden />
       </button>
       <button
+        type="button"
         onClick={() => {
           editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'justify');
         }}
         className="toolbar-item"
         aria-label="Justify Align"
       >
-        <i className="format justify-align" />
+        <AlignJustify className="toolbar-icon" aria-hidden />
       </button>{' '}
     </div>
   );

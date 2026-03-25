@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/ui/themes";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { clerkAppearance } from "@/lib/clerk-appearance";
 import Provider from "./Provider";
 import "./globals.css";
 
@@ -28,13 +28,7 @@ export default function RootLayout({
     <ClerkProvider
       signInUrl={signInUrl}
       signUpUrl={signUpUrl}
-      appearance={{
-        theme: dark,
-        variables: {
-          colorPrimary: "#3371FF",
-          fontSize: "16px",
-        },
-      }}
+      appearance={clerkAppearance}
     >
       <html
         lang="en"

@@ -324,6 +324,7 @@ pre::-webkit-scrollbar-thumb {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   vertical-align: middle;
+  color: rgb(226 232 240);
 }
 
 .toolbar button.toolbar-item {
@@ -344,18 +345,15 @@ pre::-webkit-scrollbar-thumb {
   margin-right: 2px;
 }
 
-.toolbar button.toolbar-item i.format {
-  background-size: contain;
-  display: inline-block;
+.toolbar button.toolbar-item svg.toolbar-icon {
+  display: block;
   height: 18px;
   width: 18px;
-  margin-top: 2px;
-  vertical-align: -0.25em;
-  display: flex;
-  opacity: 0.6;
+  flex-shrink: 0;
+  opacity: 0.65;
 }
 
-.toolbar button.toolbar-item:disabled i.format {
+.toolbar button.toolbar-item:disabled svg.toolbar-icon {
   opacity: 0.2;
 }
 
@@ -363,7 +361,7 @@ pre::-webkit-scrollbar-thumb {
   background-color: #0f1c34;
 }
 
-.toolbar button.toolbar-item.active i {
+.toolbar button.toolbar-item.active svg.toolbar-icon {
   opacity: 1;
 }
 
@@ -401,58 +399,6 @@ pre::-webkit-scrollbar-thumb {
   background-size: contain;
 }
 
-.toolbar-item .format {
-  filter: invert(1);
-}
-
-i.undo {
-  background-image: url(/assets/icons/arrow-counterclockwise.svg);
-}
-
-i.redo {
-  background-image: url(/assets/icons/arrow-clockwise.svg);
-}
-
-i.bold {
-  background-image: url(/assets/icons/type-bold.svg);
-}
-
-i.italic {
-  background-image: url(/assets/icons/type-italic.svg);
-}
-
-i.underline {
-  background-image: url(/assets/icons/type-underline.svg);
-}
-
-i.strikethrough {
-  background-image: url(/assets/icons/type-strikethrough.svg);
-}
-
-i.left-align {
-  background-image: url(/assets/icons/text-left.svg);
-}
-
-i.center-align {
-  background-image: url(/assets/icons/text-center.svg);
-}
-
-i.right-align {
-  background-image: url(/assets/icons/text-right.svg);
-}
-
-i.justify-align {
-  background-image: url(/assets/icons/justify.svg);
-}
-
-i.h1 {
-  background-image: url(/assets/icons/h1.svg);
-}
-
-i.h2 {
-  background-image: url(/assets/icons/h2.svg);
-}
-
-i.h3 {
-  background-image: url(/assets/icons/h3.svg);
+.toolbar button.toolbar-item:hover:not([disabled]) svg.toolbar-icon {
+  opacity: 0.95;
 }

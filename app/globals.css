@@ -199,7 +199,7 @@
     @apply bg-linear-to-t from-blue-500 to-blue-400;
   }
   .gradient-red {
-    @apply bg-linear-to-t from-red-500 to-red-400;
+    @apply bg-linear-to-t from-red-500 to-red-400 text-white;
   }
 
   .shad-dialog {
@@ -372,9 +372,130 @@
   height: 64px;
 }
 
-.cl-userButtonPopoverMain,
+.cl-userButtonPopoverCard {
+  background: #0b1527 !important;
+  border: 1px solid #1b2840 !important;
+}
+
+.cl-userButtonPopoverMain {
+  background: #0b1527 !important;
+}
+
 .cl-userButtonPopoverFooter {
-  background: #0b1527;
+  background: #060d18 !important;
+  background-image: none !important;
+  border-top: 1px solid #1b2840 !important;
+}
+
+/* UserButton popover: strip Clerk dev-instance diagonal hatch (same as modal internals) */
+.cl-userButtonPopoverCard [class*="cl-internal"],
+.cl-userButtonPopoverRootBox [class*="cl-internal"] {
+  background-image: none !important;
+}
+
+.cl-userButtonPopoverFooter [class*="cl-internal"] {
+  background-color: #060d18 !important;
+  background-image: none !important;
+}
+
+/* UserButton menu: "Manage account" / "Sign out" — readable on dark popover */
+.cl-userButtonPopoverActionButton {
+  color: #e2e8f0 !important;
+}
+
+.cl-userButtonPopoverActionButton:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.cl-userButtonPopoverActionButton svg,
+.cl-userButtonPopoverActionButtonIcon,
+.cl-userButtonPopoverActionButtonIconBox svg {
+  color: #cbd5e1 !important;
+  fill: currentColor !important;
+  opacity: 1 !important;
+}
+
+/* Clerk UserButton → Manage account (full-screen / large modal) */
+.cl-modalBackdrop {
+  background: rgba(6, 13, 24, 0.82) !important;
+  backdrop-filter: blur(8px);
+}
+
+.cl-modalContent {
+  background: #0b1527 !important;
+  border: 1px solid #1b2840 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.72) !important;
+  overflow: hidden !important;
+  max-height: min(90vh, 720px) !important;
+}
+
+.cl-navbar {
+  background: #060d18 !important;
+  border-right: 1px solid #1b2840 !important;
+}
+
+.cl-pageScrollBox,
+.cl-scrollBox {
+  background: #0b1527 !important;
+}
+
+/* UserProfile modal: Upload, Primary badge, secondary buttons (contrast on dark) */
+.cl-modalContent .cl-avatarImageActionsUpload {
+  color: #e2e8f0 !important;
+  border-color: rgba(148, 163, 184, 0.5) !important;
+  background-color: rgba(148, 163, 184, 0.12) !important;
+}
+
+.cl-modalContent .cl-avatarImageActionsUpload:hover {
+  color: #ffffff !important;
+  background-color: rgba(148, 163, 184, 0.2) !important;
+}
+
+.cl-modalContent .cl-badge,
+.cl-modalContent [class*="cl-badge"]:not([class*="Icon"]),
+.cl-modalContent [class*="badge" i]:not([class*="Icon"]) {
+  color: #f8fafc !important;
+  background-color: rgba(51, 113, 255, 0.28) !important;
+  border: 1px solid rgba(147, 197, 253, 0.45) !important;
+}
+
+.cl-modalContent .cl-profileSectionItem [class*="badge" i] {
+  color: #f8fafc !important;
+  background-color: rgba(51, 113, 255, 0.28) !important;
+  border: 1px solid rgba(147, 197, 253, 0.45) !important;
+}
+
+.cl-modalContent .cl-formButtonReset {
+  color: #93c5fd !important;
+}
+
+.cl-modalContent .cl-button[data-variant="secondary"],
+.cl-modalContent .cl-button[data-variant="ghost"] {
+  color: #e2e8f0 !important;
+}
+
+.cl-modalContent .cl-button[data-variant="secondary"]:hover,
+.cl-modalContent .cl-button[data-variant="ghost"]:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Dev-instance footer: replace striped watermark with solid bar */
+.cl-modalContent [class*="cl-internal"] {
+  background-image: none !important;
+}
+
+.cl-modalContent .cl-footer,
+.cl-modalContent footer {
+  background-color: #060d18 !important;
+}
+
+/* Manage account modal — sidebar “Secured by / Development mode” strip */
+.cl-navbar [class*="cl-internal"] {
+  background-color: #060d18 !important;
+  background-image: none !important;
 }
 
 /* ======================== Liveblocks Override */

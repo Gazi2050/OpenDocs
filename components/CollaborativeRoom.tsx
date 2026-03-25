@@ -5,7 +5,7 @@ import { updateDocument } from "@/lib/actions/room.actions";
 import type { CollaborativeRoomProps } from "@/types/opendocs";
 import { SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 import { ClientSideSuspense, RoomProvider } from "@liveblocks/react/suspense";
-import Image from "next/image";
+import { Pencil } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import ActiveCollaborators from "./ActiveCollaborators";
@@ -93,14 +93,14 @@ export default function CollaborativeRoom({
               )}
 
               {currentUserType === "editor" && !editing && (
-                <Image
-                  src="/assets/icons/edit.svg"
-                  alt="edit"
-                  width={24}
-                  height={24}
+                <button
+                  type="button"
                   onClick={() => setEditing(true)}
-                  className="cursor-pointer"
-                />
+                  className="cursor-pointer rounded p-0.5 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                  aria-label="Edit document title"
+                >
+                  <Pencil className="size-6" aria-hidden strokeWidth={2} />
+                </button>
               )}
 
               {currentUserType !== "editor" && !editing && (

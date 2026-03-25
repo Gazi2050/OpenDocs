@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { ShareDocumentDialogProps, User, UserType } from "@/types/opendocs";
 import { useSelf } from "@liveblocks/react/suspense";
-import Image from "next/image";
+import { Share2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -107,12 +107,10 @@ export default function ShareModal({
           className="gradient-blue flex h-9 gap-1 px-4"
           disabled={currentUserType !== "editor"}
         >
-          <Image
-            src="/assets/icons/share.svg"
-            alt="share"
-            width={20}
-            height={20}
-            className="min-w-4 md:size-5"
+          <Share2
+            className="size-5 min-w-4 shrink-0"
+            aria-hidden
+            strokeWidth={2}
           />
           <p className="mr-1 hidden sm:block">Share</p>
         </Button>

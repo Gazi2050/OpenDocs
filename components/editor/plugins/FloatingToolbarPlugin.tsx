@@ -12,7 +12,7 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import { OPEN_FLOATING_COMPOSER_COMMAND } from '@liveblocks/react-lexical';
 import type { LexicalEditor, LexicalNode } from 'lexical';
 import { $getSelection, $isRangeSelection, $isTextNode } from 'lexical';
-import Image from 'next/image';
+import { MessageSquare } from 'lucide-react';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
@@ -121,11 +121,10 @@ function Toolbar({
           }}
           className="floating-toolbar-btn"
         >
-          <Image
-            src="/assets/icons/comment.svg"
-            alt="comment"
-            width={24}
-            height={24}
+          <MessageSquare
+            className="size-6 text-white"
+            aria-hidden
+            strokeWidth={2}
           />
         </button>
       </div>

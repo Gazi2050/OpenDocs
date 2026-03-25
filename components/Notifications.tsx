@@ -14,6 +14,7 @@ import {
   useInboxNotifications,
   useUnreadInboxNotificationsCount,
 } from "@liveblocks/react/suspense";
+import { Bell } from "lucide-react";
 import Image from "next/image";
 import type { ReactNode } from "react";
 
@@ -32,12 +33,12 @@ export default function Notifications() {
           type="button"
           className="relative flex size-10 items-center justify-center rounded-lg outline-none"
         >
-          <Image
-            src="/assets/icons/bell.svg"
-            alt="inbox"
-            width={24}
-            height={24}
+          <Bell
+            className="size-6 text-white/90"
+            aria-hidden
+            strokeWidth={2}
           />
+          <span className="sr-only">Notifications</span>
           {count > 0 && (
             <div className="absolute right-2 top-2 z-20 size-2 rounded-full bg-blue-500" />
           )}

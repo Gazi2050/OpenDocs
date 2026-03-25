@@ -3,7 +3,7 @@
 import { createDocument } from "@/lib/actions/room.actions";
 import type { AddDocumentBtnProps } from "@/types/opendocs";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export default function AddDocumentBtn({ userId, email }: AddDocumentBtnProps) {
@@ -26,7 +26,7 @@ export default function AddDocumentBtn({ userId, email }: AddDocumentBtnProps) {
       onClick={addDocumentHandler}
       className="gradient-blue flex gap-1 shadow-md"
     >
-      <Image src="/assets/icons/add.svg" alt="add" width={24} height={24} />
+      <Plus className="size-6 shrink-0" aria-hidden strokeWidth={2} />
       <p className="hidden sm:block">Start a blank document</p>
     </Button>
   );

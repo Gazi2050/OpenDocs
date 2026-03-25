@@ -1,14 +1,12 @@
-import Image from "next/image";
+import { Loader2 } from "lucide-react";
 
 export default function Loader() {
   return (
     <div className="loader">
-      <Image
-        src="/assets/icons/loader.svg"
-        alt="loader"
-        width={32}
-        height={32}
-        className="animate-spin"
+      <Loader2
+        className="size-8 shrink-0 animate-spin text-white"
+        aria-hidden
+        strokeWidth={2}
       />
       Loading...
     </div>
