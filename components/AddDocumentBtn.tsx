@@ -24,7 +24,7 @@ export default function AddDocumentBtn({ userId, email }: AddDocumentBtnProps) {
     <Button
       type="button"
       onClick={addDocumentHandler}
-      className="gradient-blue flex gap-1 shadow-md"
+      className="gradient-accent flex gap-1 shadow-md"
     >
       <Plus className="size-6 shrink-0" aria-hidden strokeWidth={2} />
       <p className="hidden sm:block">Start a blank document</p>

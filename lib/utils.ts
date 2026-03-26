@@ -76,5 +76,5 @@ export function getUserColor(userId: string): string {
     sum += userId.charCodeAt(i)
   }
   const colorIndex = sum % brightColors.length
-  return brightColors[colorIndex] ?? "#3371FF"
+  return brightColors[colorIndex] ?? "#a1a1aa"
 }

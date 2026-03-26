@@ -3,7 +3,6 @@
 @import "shadcn/tailwind.css";
 @import "@liveblocks/react-ui/styles.css";
 @import "@liveblocks/react-lexical/styles.css";
-@import "../styles/dark-theme.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -52,18 +51,16 @@
   /* From old tailwind.config.ts */
   --breakpoint-xs: 22.5rem;
   --breakpoint-2xl: 87.5rem;
-  --color-blue-100: #b4c6ee;
-  --color-blue-400: #417bff;
-  --color-blue-500: #3371ff;
+  /* Neutral accent scale (replaces blue-tinted palette) */
+  --color-muted-soft: #94a3b8;
   --color-red-400: #dd4f56;
   --color-red-500: #dc4349;
-  --color-dark-100: #09111f;
-  --color-dark-200: #0b1527;
-  --color-dark-300: #0f1c34;
-  --color-dark-350: #12213b;
-  --color-dark-400: #27344d;
-  --color-dark-500: #2e3d5b;
-  --color-blue-muted: #b4c6ee;
+  --color-dark-100: #09090b;
+  --color-dark-200: #0c0e11;
+  --color-dark-300: #18181b;
+  --color-dark-350: #1f1f23;
+  --color-dark-400: #3f3f46;
+  --color-dark-500: #52525b;
   --background-image-doc: url(/assets/images/doc.png);
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -89,7 +86,7 @@
 
 /* OpenDocs: dark shell aligned with migrated app */
 :root {
-  --background: #09111f;
+  --background: #09090b;
   --foreground: #fff;
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
@@ -115,7 +112,7 @@
   --radius: 0.625rem;
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: oklch(0.55 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
@@ -149,7 +146,7 @@
   --chart-5: oklch(0.269 0 0);
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary: oklch(0.55 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
@@ -178,11 +175,11 @@
     background: #09090a;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #2e3d5b;
+    background: #3f3f46;
     border-radius: 50px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #7878a3;
+    background: #71717a;
   }
 }
 
@@ -194,8 +191,8 @@
     @apply text-[10px] font-normal;
   }
 
-  .gradient-blue {
-    @apply bg-linear-to-t from-blue-500 to-blue-400;
+  .gradient-accent {
+    @apply bg-linear-to-t from-zinc-600 to-zinc-500 text-white;
   }
   .gradient-red {
     @apply bg-linear-to-t from-red-500 to-red-400 text-white;
@@ -210,7 +207,7 @@
   }
 
   .shad-select {
-    @apply !w-fit !border-none !bg-transparent !text-blue-muted;
+    @apply !w-fit !border-none !bg-transparent !text-muted-soft;
   }
 
   .shad-select svg {
@@ -218,7 +215,7 @@
   }
 
   .shad-select-item {
-    @apply !cursor-pointer !bg-dark-200 !text-blue-muted focus:!bg-dark-300 hover:!bg-dark-300 focus:!text-blue-muted;
+    @apply !cursor-pointer !bg-dark-200 !text-muted-soft focus:!bg-dark-300 hover:!bg-dark-300 focus:!text-muted-soft;
   }
 
   .shad-popover {
@@ -248,12 +245,12 @@
   }
   .toolbar-wrapper::-webkit-scrollbar-thumb,
   .editor-wrapper::-webkit-scrollbar-thumb {
-    background: #2e3d5b;
+    background: #3f3f46;
     border-radius: 50px;
   }
   .toolbar-wrapper::-webkit-scrollbar-thumb:hover,
   .editor-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #7878a3;
+    background: #71717a;
   }
 
   .editor-wrapper {
@@ -289,7 +286,7 @@
   }
 
   .view-only-tag {
-    @apply rounded-md bg-dark-400/50 px-2 py-0.5 text-xs text-blue-muted/50;
+    @apply rounded-md bg-dark-400/50 px-2 py-0.5 text-xs text-muted-soft/50;
   }
 
   .collaborators-list {
@@ -337,6 +334,398 @@
   }
 }
 
+/* ======================== Lexical Editor */
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.other h2 {
+  font-size: 18px;
+  color: #444;
+  margin-bottom: 7px;
+}
+
+.other a {
+  color: #777;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.other ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.ltr {
+  text-align: left;
+}
+
+.rtl {
+  text-align: right;
+}
+
+.editor-container {
+  border-radius: 2px;
+  color: #000;
+  line-height: 20px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.editor-inner {
+  background: #0c0e11;
+  position: relative;
+}
+
+.editor-input {
+  min-height: 400px;
+  resize: none;
+  font-size: 15px;
+  caret-color: #52525b;
+  position: relative;
+  tab-size: 1;
+  outline: 0;
+  padding: 40px;
+  color: #cbd5e1;
+}
+
+.editor-placeholder {
+  color: #94a3b8;
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  top: 40px;
+  left: 40px;
+  font-size: 15px;
+  user-select: none;
+  display: inline-block;
+  pointer-events: none;
+}
+
+.editor-text-bold {
+  font-weight: bold;
+}
+
+.editor-text-italic {
+  font-style: italic;
+}
+
+.editor-text-underline {
+  text-decoration: underline;
+}
+
+.editor-text-strikethrough {
+  text-decoration: line-through;
+}
+
+.editor-text-underlineStrikethrough {
+  text-decoration: underline line-through;
+}
+
+.editor-text-code {
+  background-color: rgb(240, 242, 245);
+  padding: 1px 0.25rem;
+  font-family: Menlo, Consolas, Monaco, monospace;
+  font-size: 94%;
+}
+
+.editor-link {
+  color: #a1a1aa;
+  text-decoration: none;
+}
+
+.tree-view-output {
+  display: block;
+  background: #222;
+  color: #fff;
+  padding: 5px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  margin: 1px auto 10px auto;
+  max-height: 250px;
+  position: relative;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: auto;
+  line-height: 14px;
+}
+
+.editor-code {
+  background-color: rgb(240, 242, 245);
+  font-family: Menlo, Consolas, Monaco, monospace;
+  display: block;
+  padding: 8px 8px 8px 52px;
+  line-height: 1.53;
+  font-size: 13px;
+  margin: 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  tab-size: 2;
+  overflow-x: auto;
+  position: relative;
+}
+
+.editor-code:before {
+  content: attr(data-gutter);
+  position: absolute;
+  background-color: #eee;
+  left: 0;
+  top: 0;
+  border-right: 1px solid #ccc;
+  padding: 8px;
+  color: #777;
+  white-space: pre-wrap;
+  text-align: right;
+  min-width: 25px;
+}
+.editor-code:after {
+  content: attr(data-highlight-language);
+  top: 0;
+  right: 3px;
+  padding: 3px;
+  font-size: 10px;
+  text-transform: uppercase;
+  position: absolute;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.editor-tokenComment {
+  color: slategray;
+}
+
+.editor-tokenPunctuation {
+  color: #999;
+}
+
+.editor-tokenProperty {
+  color: #905;
+}
+
+.editor-tokenSelector {
+  color: #690;
+}
+
+.editor-tokenOperator {
+  color: #9a6e3a;
+}
+
+.editor-tokenAttr {
+  color: #6b7280;
+}
+
+.editor-tokenVariable {
+  color: #e90;
+}
+
+.editor-tokenFunction {
+  color: #dd4a68;
+}
+
+.editor-paragraph {
+  margin: 0;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.editor-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.editor-heading-h1 {
+  font-size: 2rem;
+  margin: 0;
+  margin-bottom: 12px;
+  padding: 0;
+}
+
+.editor-heading-h2 {
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.editor-heading-h3 {
+  font-size: 1.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.editor-quote {
+  margin: 0;
+  margin-left: 20px;
+  font-size: 15px;
+  color: rgb(101, 103, 107);
+  border-left-color: rgb(206, 208, 212);
+  border-left-width: 4px;
+  border-left-style: solid;
+  padding-left: 16px;
+}
+
+.editor-list-ol {
+  padding: 0;
+  margin: 0;
+  margin-left: 16px;
+}
+
+.editor-list-ul {
+  padding: 0;
+  margin: 0;
+  margin-left: 16px;
+}
+
+.editor-listitem {
+  margin: 8px 32px 8px 32px;
+}
+
+.editor-nested-listitem {
+  list-style-type: none;
+}
+
+pre::-webkit-scrollbar {
+  background: transparent;
+  width: 10px;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: #999;
+}
+
+.debug-timetravel-panel {
+  overflow: hidden;
+  padding: 0 0 10px 0;
+  margin: auto;
+  display: flex;
+}
+
+.debug-timetravel-panel-slider {
+  padding: 0;
+  flex: 8;
+}
+
+.debug-timetravel-panel-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  flex: 1;
+  color: #fff;
+  font-size: 12px;
+}
+
+.debug-timetravel-panel-button:hover {
+  text-decoration: underline;
+}
+
+.debug-timetravel-button {
+  border: 0;
+  padding: 0;
+  font-size: 12px;
+  top: 10px;
+  right: 15px;
+  position: absolute;
+  background: none;
+  color: #fff;
+}
+
+.debug-timetravel-button:hover {
+  text-decoration: underline;
+}
+
+.toolbar {
+  display: flex;
+  margin-bottom: 1px;
+  background: #09090b;
+  padding: 4px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  vertical-align: middle;
+  color: rgb(226 232 240);
+}
+
+.toolbar button.toolbar-item {
+  border: 0;
+  display: flex;
+  background: none;
+  border-radius: 0px;
+  padding: 8px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.toolbar button.toolbar-item:disabled {
+  cursor: not-allowed;
+}
+
+.toolbar button.toolbar-item.spaced {
+  margin-right: 2px;
+}
+
+.toolbar button.toolbar-item svg.toolbar-icon {
+  display: block;
+  height: 18px;
+  width: 18px;
+  flex-shrink: 0;
+  opacity: 0.65;
+}
+
+.toolbar button.toolbar-item:disabled svg.toolbar-icon {
+  opacity: 0.2;
+}
+
+.toolbar button.toolbar-item.active {
+  background-color: #18181b;
+}
+
+.toolbar button.toolbar-item.active svg.toolbar-icon {
+  opacity: 1;
+}
+
+.toolbar .toolbar-item:hover:not([disabled]) {
+  background-color: #18181b;
+}
+
+.toolbar .divider {
+  width: 1px;
+  background-color: #18181b;
+  margin: 0 4px;
+}
+
+.toolbar .toolbar-item .text {
+  display: flex;
+  line-height: 20px;
+  width: 200px;
+  vertical-align: middle;
+  font-size: 14px;
+  color: #777;
+  text-overflow: ellipsis;
+  width: 70px;
+  overflow: hidden;
+  height: 20px;
+  text-align: left;
+}
+
+.toolbar .toolbar-item .icon {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  user-select: none;
+  margin-right: 8px;
+  line-height: 16px;
+  background-size: contain;
+}
+
+.toolbar button.toolbar-item:hover:not([disabled]) svg.toolbar-icon {
+  opacity: 0.95;
+}
+
 /* ======================== Clerk Override */
 .cl-avatarBox {
   width: 36px;
@@ -351,7 +740,7 @@
 .cl-signIn-start,
 .cl-signUp-start,
 .cl-footer {
-  background: #060d18;
+  background: #050506;
   box-shadow: none;
   padding: 20px;
 }
@@ -359,7 +748,7 @@
 .cl-socialButtonsBlockButton,
 .cl-socialButtonsBlockButton:hover {
   height: 40px;
-  background-color: #3371ff;
+  background-color: #3f3f46;
   color: #fff;
 }
 
@@ -372,18 +761,18 @@
 }
 
 .cl-userButtonPopoverCard {
-  background: #0b1527 !important;
-  border: 1px solid #1b2840 !important;
+  background: #0c0e11 !important;
+  border: 1px solid #27272a !important;
 }
 
 .cl-userButtonPopoverMain {
-  background: #0b1527 !important;
+  background: #0c0e11 !important;
 }
 
 .cl-userButtonPopoverFooter {
-  background: #060d18 !important;
+  background: #050506 !important;
   background-image: none !important;
-  border-top: 1px solid #1b2840 !important;
+  border-top: 1px solid #27272a !important;
 }
 
 /* UserButton popover: strip Clerk dev-instance diagonal hatch (same as modal internals) */
@@ -393,7 +782,7 @@
 }
 
 .cl-userButtonPopoverFooter [class*="cl-internal"] {
-  background-color: #060d18 !important;
+  background-color: #050506 !important;
   background-image: none !important;
 }
 
@@ -422,8 +811,8 @@
 }
 
 .cl-modalContent {
-  background: #0b1527 !important;
-  border: 1px solid #1b2840 !important;
+  background: #0c0e11 !important;
+  border: 1px solid #27272a !important;
   border-radius: 14px !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.72) !important;
   overflow: hidden !important;
@@ -431,13 +820,13 @@
 }
 
 .cl-navbar {
-  background: #060d18 !important;
-  border-right: 1px solid #1b2840 !important;
+  background: #050506 !important;
+  border-right: 1px solid #27272a !important;
 }
 
 .cl-pageScrollBox,
 .cl-scrollBox {
-  background: #0b1527 !important;
+  background: #0c0e11 !important;
 }
 
 /* UserProfile modal: Upload, Primary badge, secondary buttons (contrast on dark) */
@@ -456,18 +845,18 @@
 .cl-modalContent [class*="cl-badge"]:not([class*="Icon"]),
 .cl-modalContent [class*="badge" i]:not([class*="Icon"]) {
   color: #f8fafc !important;
-  background-color: rgba(51, 113, 255, 0.28) !important;
-  border: 1px solid rgba(147, 197, 253, 0.45) !important;
+  background-color: rgba(63, 63, 70, 0.55) !important;
+  border: 1px solid rgba(161, 161, 170, 0.45) !important;
 }
 
 .cl-modalContent .cl-profileSectionItem [class*="badge" i] {
   color: #f8fafc !important;
-  background-color: rgba(51, 113, 255, 0.28) !important;
-  border: 1px solid rgba(147, 197, 253, 0.45) !important;
+  background-color: rgba(63, 63, 70, 0.55) !important;
+  border: 1px solid rgba(161, 161, 170, 0.45) !important;
 }
 
 .cl-modalContent .cl-formButtonReset {
-  color: #93c5fd !important;
+  color: #cbd5e1 !important;
 }
 
 .cl-modalContent .cl-button[data-variant="secondary"],
@@ -488,27 +877,27 @@
 
 .cl-modalContent .cl-footer,
 .cl-modalContent footer {
-  background-color: #060d18 !important;
+  background-color: #050506 !important;
 }
 
 /* Manage account modal — sidebar “Secured by / Development mode” strip */
 .cl-navbar [class*="cl-internal"] {
-  background-color: #060d18 !important;
+  background-color: #050506 !important;
   background-image: none !important;
 }
 
 /* ======================== Liveblocks Override */
 .lb-root {
-  --lb-accent-subtle: #0b1527;
+  --lb-accent-subtle: #0c0e11;
   --lb-radius: 0px;
-  --lb-dynamic-background: #1b2840;
+  --lb-dynamic-background: #27272a;
 }
 
 .lb-comment,
 .lb-thread-comments,
 .lb-composer,
 .lb-comment-reaction {
-  background-color: #0f1c34;
+  background-color: #18181b;
   color: #fff;
 }
 
@@ -517,8 +906,8 @@
 }
 
 .lb-button:where([data-variant="primary"]) {
-  background-color: #161e30;
-  color: #b4c6ee;
+  background-color: #1f1f23;
+  color: #cbd5e1;
   padding: 8px;
 }
 
@@ -532,7 +921,7 @@
           )
       )
   ) {
-  color: #b4c6ee;
+  color: #cbd5e1;
 }
 
 .lb-button:where(
@@ -541,8 +930,8 @@
     [aria-expanded="true"],
     [aria-selected="true"]
   ) {
-  --lb-button-background: #161e30;
-  color: #b4c6ee;
+  --lb-button-background: #1f1f23;
+  color: #cbd5e1;
 }
 
 .lb-inbox-notification-list-item:where(:not(:last-of-type)) {
@@ -561,7 +950,7 @@
 }
 
 .lb-comment-content {
-  background: #0b1527;
+  background: #0c0e11;
   margin-top: 16px;
   padding: 12px;
   border-radius: 4px;
@@ -576,20 +965,20 @@
 .lb-emoji-picker-search-icon,
 .lb-emoji-picker-category-header-title,
 .lb-emoji-picker-search::placeholder {
-  color: #b4c6ee;
+  color: #94a3b8;
 }
 
 .data-liveblocks-portal {
-  color: #b4c6ee !important;
+  color: #94a3b8 !important;
 }
 
 .lb-root:where(:not(.lb-root .lb-root)) {
-  --lb-dynamic-background: #1b2840;
+  --lb-dynamic-background: #27272a;
   color: #fff;
 }
 
 .lb-composer-editor :where([data-placeholder]) {
-  color: #b4c6ee;
+  color: #94a3b8;
   font-size: 14px;
 }
 
@@ -598,5 +987,5 @@
 }
 
 .lb-elevation {
-  background: #0f1c34;
+  background: #18181b;
 }

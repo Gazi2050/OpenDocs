@@ -1,9 +1,9 @@
 import { dark } from "@clerk/ui/themes";
 
 /** Matches OpenDocs shell (`globals.css` dark surfaces). */
-const shell = "#0b1527";
-const deep = "#060d18";
-const border = "#1b2840";
+const shell = "#0c0e11";
+const deep = "#050506";
+const border = "#27272a";
 
 /**
  * Clerk `UserButton` → Manage account modal, sign-in/up, and popover styling.
@@ -11,7 +11,7 @@ const border = "#1b2840";
 export const clerkAppearance = {
   theme: dark,
   variables: {
-    colorPrimary: "#3371FF",
+    colorPrimary: "#a1a1aa",
     fontSize: "16px",
     colorBackground: shell,
     colorInput: deep,
@@ -92,16 +92,16 @@ export const clerkAppearance = {
     },
     badge: {
       color: "#f8fafc",
-      backgroundColor: "rgba(51, 113, 255, 0.26)",
-      border: "1px solid rgba(147, 197, 253, 0.42)",
+      backgroundColor: "rgba(63, 63, 70, 0.55)",
+      border: "1px solid rgba(161, 161, 170, 0.45)",
     },
     badge__primary: {
       color: "#ffffff",
-      backgroundColor: "rgba(51, 113, 255, 0.32)",
-      border: "1px solid rgba(147, 197, 253, 0.5)",
+      backgroundColor: "rgba(63, 63, 70, 0.65)",
+      border: "1px solid rgba(161, 161, 170, 0.55)",
     },
     formButtonReset: {
-      color: "#93c5fd",
+      color: "#cbd5e1",
     },
     identityPreviewText: {
       color: "#e2e8f0",

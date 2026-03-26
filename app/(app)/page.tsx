@@ -71,7 +71,7 @@ export default async function HomePage() {
                     </div>
                     <div className="space-y-1">
                       <p className="line-clamp-1 text-lg">{title}</p>
-                      <p className="text-sm font-light text-blue-muted">
+                      <p className="text-sm font-light text-muted-soft">
                         Created about {dateConverter(createdAtToIso(createdAt))}
                       </p>
                     </div>

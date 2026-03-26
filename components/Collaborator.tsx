@@ -77,7 +77,7 @@ export default function Collaborator({
         <div>
           <p className="line-clamp-1 text-sm font-semibold leading-4 text-white">
             {collaborator.name}
-            <span className="text-10-regular pl-2 text-blue-muted">
+            <span className="text-10-regular pl-2 text-muted-soft">
               {loading && "updating..."}
             </span>
           </p>
@@ -86,14 +86,14 @@ export default function Collaborator({
               {error}
             </p>
           ) : null}
-          <p className="text-sm font-light text-blue-muted">
+          <p className="text-sm font-light text-muted-soft">
             {collaborator.email}
           </p>
         </div>
       </div>
 
       {creatorId === collaborator.id ? (
-        <p className="text-sm text-blue-muted">Owner</p>
+        <p className="text-sm text-muted-soft">Owner</p>
       ) : (
         <div className="flex items-center gap-2">
           <UserTypeSelector

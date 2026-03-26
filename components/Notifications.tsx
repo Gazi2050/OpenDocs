@@ -40,7 +40,7 @@ export default function Notifications() {
           />
           <span className="sr-only">Notifications</span>
           {count > 0 && (
-            <div className="absolute right-2 top-2 z-20 size-2 rounded-full bg-blue-500" />
+            <div className="absolute right-2 top-2 z-20 size-2 rounded-full bg-zinc-500" />
           )}
         </button>
       </PopoverTrigger>

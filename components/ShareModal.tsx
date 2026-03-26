@@ -36,7 +36,7 @@ function selfInfoToUser(
       name: "",
       email: "",
       avatar: "",
-      color: "#3371FF",
+      color: "#a1a1aa",
     };
   }
   return {
@@ -104,7 +104,7 @@ export default function ShareModal({
       <DialogTrigger asChild>
         <Button
           type="button"
-          className="gradient-blue flex h-9 gap-1 px-4"
+          className="gradient-accent flex h-9 gap-1 px-4"
           disabled={currentUserType !== "editor"}
         >
           <Share2
@@ -123,7 +123,7 @@ export default function ShareModal({
           </DialogDescription>
         </DialogHeader>
 
-        <Label htmlFor="email" className="mt-6 text-blue-muted">
+        <Label htmlFor="email" className="mt-6 text-muted-soft">
           Email address
         </Label>
         <div className="flex items-center gap-3">
@@ -143,7 +143,7 @@ export default function ShareModal({
           <Button
             type="button"
             onClick={shareDocumentHandler}
-            className="gradient-blue flex h-full gap-1 px-5"
+            className="gradient-accent flex h-full gap-1 px-5"
             disabled={loading}
           >
             {loading ? "Sending..." : "Invite"}
