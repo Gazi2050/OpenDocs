@@ -3,12 +3,19 @@ import type { HeaderProps } from "@/types/opendocs";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Header({ children, className }: HeaderProps) {
+export default function Header({ children, className, variant = "default" }: HeaderProps) {
   return (
-    <div className={cn("header", className)}>
+    <div
+      className={cn("header", variant === "document" && "header-document", className)}
+    >
       <Link
         href="/"
-        className="flex items-center gap-2 md:flex-1 md:gap-3"
+        className={cn(
+          "flex items-center gap-2 md:gap-3",
+          variant === "document"
+            ? "header-document-brand shrink-0"
+            : "md:flex-1",
+        )}
       >
         <Image
           src="/assets/images/logo01.png"

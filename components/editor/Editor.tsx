@@ -46,7 +46,7 @@ export function Editor({ currentUserType }: { currentUserType: UserType }) {
     <LexicalComposer initialConfig={initialConfig}>
       <LexicalCollaboration>
         <div className="editor-container size-full">
-          <div className="toolbar-wrapper flex min-w-full items-center justify-center">
+          <div className="toolbar-wrapper flex items-center justify-start md:justify-center">
             <ToolbarPlugin />
           </div>
 

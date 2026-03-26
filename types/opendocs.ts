@@ -52,6 +52,8 @@ export type ShareDocumentDialogProps = {
 export type HeaderProps = {
   children: ReactNode;
   className?: string;
+  /** Document room: centered title column, actions pinned right. */
+  variant?: "default" | "document";
 };
 
 export type CollaboratorProps = {

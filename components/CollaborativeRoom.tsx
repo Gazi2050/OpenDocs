@@ -74,10 +74,10 @@ export default function CollaborativeRoom({
     <RoomProvider id={roomId}>
       <ClientSideSuspense fallback={<Loader />}>
         <div className="collaborative-room">
-          <Header>
+          <Header variant="document">
             <div
               ref={containerRef}
-              className="flex w-fit items-center justify-center gap-2"
+              className="header-document-title flex w-fit max-w-full items-center justify-center gap-2"
             >
               {editing && !loading ? (
                 <Input
@@ -115,7 +115,7 @@ export default function CollaborativeRoom({
                 <p className="text-sm text-muted-foreground">saving...</p>
               )}
             </div>
-            <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">
+            <div className="header-document-actions">
               <ActiveCollaborators />
 
               {currentUserType === "editor" && (
