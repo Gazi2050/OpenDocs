@@ -53,9 +53,17 @@ export function Editor({
     <LexicalComposer initialConfig={initialConfig}>
       <LexicalCollaboration>
         <div className="editor-container size-full">
-          <div className="toolbar-wrapper flex min-w-full justify-between">
+          {/* Keep toolbar visually centered while editor-only actions stay right-aligned */}
+          <div className="toolbar-wrapper grid min-w-full grid-cols-3 items-center">
+            <div />
             <ToolbarPlugin />
-            {currentUserType === "editor" && <DeleteModal roomId={roomId} />}
+            {currentUserType === "editor" ? (
+              <div className="justify-self-end">
+                <DeleteModal roomId={roomId} />
+              </div>
+            ) : (
+              <div />
+            )}
           </div>
 
           <div className="editor-wrapper flex flex-col items-center justify-start">

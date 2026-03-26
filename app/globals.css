@@ -699,10 +699,11 @@ pre::-webkit-scrollbar-thumb {
   border: 0;
   display: flex;
   background: none;
-  border-radius: 0px;
+  border-radius: 8px;
   padding: 8px;
   cursor: pointer;
   vertical-align: middle;
+  transition: background-color 120ms ease;
 }
 
 .toolbar button.toolbar-item:disabled {
@@ -727,6 +728,7 @@ pre::-webkit-scrollbar-thumb {
 
 .toolbar button.toolbar-item.active {
   background-color: var(--app-dark-300);
+  border-radius: 8px;
 }
 
 .toolbar button.toolbar-item.active svg.toolbar-icon {
@@ -735,6 +737,12 @@ pre::-webkit-scrollbar-thumb {
 
 .toolbar .toolbar-item:hover:not([disabled]) {
   background-color: var(--app-dark-300);
+  border-radius: 8px;
+}
+
+.floating-toolbar-btn:hover {
+  background-color: var(--app-dark-300);
+  border-radius: 8px;
 }
 
 .toolbar .divider {
@@ -990,7 +998,7 @@ pre::-webkit-scrollbar-thumb {
 /* ======================== Liveblocks Override */
 .lb-root {
   --lb-accent-subtle: var(--app-dark-200);
-  --lb-radius: 0px;
+  --lb-radius: 12px;
   --lb-dynamic-background: var(--app-dark-400);
 }
 
@@ -1000,6 +1008,38 @@ pre::-webkit-scrollbar-thumb {
 .lb-comment-reaction {
   background-color: var(--app-dark-300);
   color: var(--foreground);
+  border-radius: var(--lb-radius);
+  overflow: hidden;
+}
+
+/* Don't clip inner composer/editor boxes into rounded corners. */
+.lb-composer,
+.lb-thread-comments {
+  overflow: visible !important;
+}
+
+/* Reverse only the thread message list (not the editor toolbar). */
+.lb-thread-comments {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+/* No rounding for the message bubbles/inner message area */
+.lb-thread-comments {
+  border-radius: 0 !important;
+}
+
+.lb-comment {
+  border-radius: 0 !important;
+}
+
+/* Side comments panel: keep "Write a comment" / "Reply to thread" square */
+.comments-container .lb-composer,
+.comments-container .lb-composer-editor,
+.comments-container .lb-composer-action,
+.comments-container .lb-composer-footer,
+.comments-container .lb-composer-editor-container {
+  border-radius: 0 !important;
 }
 
 .lb-button {
@@ -1054,7 +1094,8 @@ pre::-webkit-scrollbar-thumb {
   background: var(--app-dark-200);
   margin-top: 16px;
   padding: 12px;
-  border-radius: 4px;
+  /* Inner boxes should stay square; only outer panel corners are rounded. */
+  border-radius: 0 !important;
   font-size: 14px;
 }
 
@@ -1083,10 +1124,34 @@ pre::-webkit-scrollbar-thumb {
   font-size: 14px;
 }
 
+/* Inner composer editor should be square inside the rounded panel */
+.lb-composer-editor {
+  border-radius: 0 !important;
+}
+
+/* Some Liveblocks UI elements inside the editor keep their own radius token */
+.lb-composer-editor * {
+  border-radius: 0 !important;
+}
+
+/* Safety net: ensure inner textarea/contenteditable are square too */
+.lb-composer-editor textarea,
+.lb-composer-editor input,
+.lb-composer-editor [contenteditable="true"],
+.lb-composer textarea,
+.lb-composer input,
+.lb-composer [contenteditable="true"] {
+  border-radius: 0 !important;
+}
+
 .lb-lexical-floating-threads-thread:where([data-resolved]) {
   opacity: 40%;
 }
 
 .lb-elevation {
   background: var(--app-dark-300);
+  /* Keep radius on the outer containers (.lb-comment/.lb-composer),
+     but square up inner raised surfaces. */
+  border-radius: 0 !important;
+  overflow: hidden;
 }
