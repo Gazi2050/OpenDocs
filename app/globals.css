@@ -347,6 +347,8 @@
   }
 
   .comments-container {
+    /* Square side panel; global --lb-radius stays on .lb-root for floating/other LB UI */
+    --lb-radius: 0px;
     @apply mb-10 space-y-4 lg:w-fit flex w-full flex-col items-center justify-center;
   }
 
