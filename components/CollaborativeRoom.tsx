@@ -9,9 +9,11 @@ import { Pencil } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import ActiveCollaborators from "./ActiveCollaborators";
+import { DeleteModal } from "./DeleteModal";
 import Header from "./Header";
 import Loader from "./Loader";
 import ShareModal from "./ShareModal";
+import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
 export default function CollaborativeRoom({
@@ -93,14 +95,16 @@ export default function CollaborativeRoom({
               )}
 
               {currentUserType === "editor" && !editing && (
-                <button
+                <Button
                   type="button"
+                  variant="ghost"
+                  size="icon-lg"
                   onClick={() => setEditing(true)}
-                  className="cursor-pointer rounded p-0.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                  className="shrink-0 border border-border bg-transparent text-muted-foreground transition-colors hover:border-ring/50 hover:bg-accent/50 hover:text-foreground"
                   aria-label="Edit document title"
                 >
-                  <Pencil className="size-6" aria-hidden strokeWidth={2} />
-                </button>
+                  <Pencil className="size-5" aria-hidden strokeWidth={2} />
+                </Button>
               )}
 
               {currentUserType !== "editor" && !editing && (
@@ -113,6 +117,10 @@ export default function CollaborativeRoom({
             </div>
             <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">
               <ActiveCollaborators />
+
+              {currentUserType === "editor" && (
+                <DeleteModal roomId={roomId} />
+              )}
 
               <ShareModal
                 roomId={roomId}
@@ -128,7 +136,7 @@ export default function CollaborativeRoom({
               )}
             </div>
           </Header>
-          <Editor roomId={roomId} currentUserType={currentUserType} />
+          <Editor currentUserType={currentUserType} />
         </div>
       </ClientSideSuspense>
     </RoomProvider>

@@ -275,8 +275,9 @@
     @apply relative inline-flex size-8 items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 disabled:pointer-events-none disabled:opacity-50;
   }
 
+  /* relative + z-index so layering works; below dialogs (z-50), above floating threads */
   .toolbar-wrapper {
-    @apply z-50 w-screen overflow-auto border-y border-border bg-background pl-3 pr-4 shadow-sm;
+    @apply relative z-40 w-screen overflow-auto border-y border-border bg-background pl-3 pr-4 shadow-sm;
   }
   .toolbar-wrapper::-webkit-scrollbar,
   .editor-wrapper::-webkit-scrollbar {
@@ -298,12 +299,14 @@
     background: var(--app-dark-500);
   }
 
+  /* Stacking context below .toolbar-wrapper so scroll content / threads don’t paint over it */
   .editor-wrapper {
-    @apply h-[calc(100vh-140px)] gap-5 overflow-auto px-5 pt-5 lg:flex-row lg:items-start lg:justify-center xl:gap-10 xl:pt-10;
+    @apply relative z-0 h-[calc(100vh-140px)] gap-5 overflow-auto px-5 pt-5 lg:flex-row lg:items-start lg:justify-center xl:gap-10 xl:pt-10;
   }
 
+  /* Above portaled Liveblocks floating UI (z-35), below dialogs (z-50) */
   .header {
-    @apply min-h-[92px] min-w-full flex-nowrap bg-background flex w-full items-center justify-between gap-2 border-b border-border px-4;
+    @apply relative z-[45] min-h-[92px] min-w-full flex-nowrap bg-background flex w-full items-center justify-between gap-2 border-b border-border px-4;
   }
 
   .document-list-container {
@@ -347,8 +350,6 @@
   }
 
   .comments-container {
-    /* Square side panel; global --lb-radius stays on .lb-root for floating/other LB UI */
-    --lb-radius: 0px;
     @apply mb-10 space-y-4 lg:w-fit flex w-full flex-col items-center justify-center;
   }
 
@@ -998,10 +999,17 @@ pre::-webkit-scrollbar-thumb {
 }
 
 /* ======================== Liveblocks Override */
+/* Single source for radius: overrides imported `@liveblocks/*` .lb-root (--lb-radius: .5em) */
 .lb-root {
   --lb-accent-subtle: var(--app-dark-200);
-  --lb-radius: 12px;
+  --lb-radius: 0px;
   --lb-dynamic-background: var(--app-dark-400);
+}
+
+/* Portaled floating thread/composer: under formatting toolbar (z-40), above editor (z-0) */
+.lb-lexical-floating-composer,
+.lb-lexical-floating-threads {
+  z-index: 35;
 }
 
 .lb-comment,

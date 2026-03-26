@@ -1,7 +1,6 @@
 "use client";
 
 import Comments from "@/components/Comments";
-import { DeleteModal } from "@/components/DeleteModal";
 import Loader from "@/components/Loader";
 import type { UserType } from "@/types/opendocs";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
@@ -28,13 +27,7 @@ function Placeholder() {
   return <div className="editor-placeholder">Enter some rich text...</div>;
 }
 
-export function Editor({
-  roomId,
-  currentUserType,
-}: {
-  roomId: string;
-  currentUserType: UserType;
-}) {
+export function Editor({ currentUserType }: { currentUserType: UserType }) {
   const ready = useIsEditorReady();
   const { threads } = useThreads();
 
@@ -53,17 +46,8 @@ export function Editor({
     <LexicalComposer initialConfig={initialConfig}>
       <LexicalCollaboration>
         <div className="editor-container size-full">
-          {/* Keep toolbar visually centered while editor-only actions stay right-aligned */}
-          <div className="toolbar-wrapper grid min-w-full grid-cols-3 items-center">
-            <div />
+          <div className="toolbar-wrapper flex min-w-full items-center justify-center">
             <ToolbarPlugin />
-            {currentUserType === "editor" ? (
-              <div className="justify-self-end">
-                <DeleteModal roomId={roomId} />
-              </div>
-            ) : (
-              <div />
-            )}
           </div>
 
           <div className="editor-wrapper flex flex-col items-center justify-start">

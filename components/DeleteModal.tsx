@@ -45,10 +45,12 @@ export function DeleteModal({ roomId }: DeleteModalProps) {
     >
       <DialogTrigger asChild>
         <Button
+          type="button"
           variant="ghost"
-          className="size-12 shrink-0 rounded-md border border-border bg-transparent p-0 text-muted-foreground transition-colors hover:border-destructive/40 hover:text-destructive"
+          size="icon-lg"
+          className="shrink-0 border border-border bg-transparent text-muted-foreground transition-colors hover:border-destructive/40 hover:text-destructive"
         >
-          <Trash2 className="size-6" aria-hidden strokeWidth={1.75} />
+          <Trash2 className="size-5" aria-hidden strokeWidth={2} />
         </Button>
       </DialogTrigger>
       <DialogContent className="shad-dialog overflow-hidden" showCloseButton>
