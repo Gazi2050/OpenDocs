@@ -771,7 +771,10 @@ pre::-webkit-scrollbar-thumb {
   opacity: 0.95;
 }
 
-/* ======================== Clerk Override */
+/* ======================== Clerk Override
+ * Single source of truth for surfaces (appearance.elements removed — see lib/clerk-appearance.ts).
+ * Scope: auth pages vs UserButton popover vs UserProfile modal — avoid bare .cl-footer (hits modals).
+ */
 .cl-avatarBox {
   width: 36px;
   height: 36px;
@@ -781,13 +784,23 @@ pre::-webkit-scrollbar-thumb {
   height: fit-content !important;
 }
 
+.cl-logoBox {
+  height: 64px;
+}
+
+/* Sign-in / Sign-up cards only (not modal footers) */
 .cl-cardBox,
 .cl-signIn-start,
-.cl-signUp-start,
-.cl-footer {
+.cl-signUp-start {
   background: var(--app-dark-deep);
   box-shadow: none;
   padding: 20px;
+}
+
+.cl-signIn-start .cl-footer,
+.cl-signUp-start .cl-footer {
+  background: transparent;
+  padding: 1.25rem 0 0;
 }
 
 .cl-socialButtonsBlockButton,
@@ -797,66 +810,52 @@ pre::-webkit-scrollbar-thumb {
   color: var(--foreground);
 }
 
-.cl-internal-2gzuzc {
-  filter: brightness(1000%);
-}
-
-.cl-logoBox {
-  height: 64px;
-}
-
+/* UserButton popover (small menu) */
 .cl-userButtonPopoverCard {
-  background: var(--app-dark-200) !important;
+  background: var(--card) !important;
   border: 1px solid var(--border) !important;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.55);
 }
 
 .cl-userButtonPopoverMain {
-  background: var(--app-dark-200) !important;
+  background: var(--card) !important;
 }
 
 .cl-userButtonPopoverFooter {
-  background: var(--app-dark-deep) !important;
-  background-image: none !important;
+  background: var(--muted) !important;
   border-top: 1px solid var(--border) !important;
 }
 
-/* UserButton popover: strip Clerk dev-instance diagonal hatch (same as modal internals) */
 .cl-userButtonPopoverCard [class*="cl-internal"],
 .cl-userButtonPopoverRootBox [class*="cl-internal"] {
   background-image: none !important;
 }
 
-.cl-userButtonPopoverFooter [class*="cl-internal"] {
-  background-color: var(--app-dark-deep) !important;
-  background-image: none !important;
-}
-
-/* UserButton menu: "Manage account" / "Sign out" — readable on dark popover */
 .cl-userButtonPopoverActionButton {
-  color: #e2e8f0 !important;
+  color: var(--foreground) !important;
 }
 
 .cl-userButtonPopoverActionButton:hover {
-  color: #ffffff !important;
-  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--foreground) !important;
+  background-color: color-mix(in oklch, var(--foreground) 8%, transparent) !important;
 }
 
 .cl-userButtonPopoverActionButton svg,
 .cl-userButtonPopoverActionButtonIcon,
 .cl-userButtonPopoverActionButtonIconBox svg {
-  color: #cbd5e1 !important;
+  color: var(--muted-foreground) !important;
   fill: currentColor !important;
   opacity: 1 !important;
 }
 
-/* Clerk UserButton → Manage account (full-screen / large modal) */
+/* UserProfile / Manage account modal */
 .cl-modalBackdrop {
   background: oklch(0.12 0.02 270 / 0.78) !important;
   backdrop-filter: blur(8px);
 }
 
 .cl-modalContent {
-  background: var(--app-dark-200) !important;
+  background: var(--card) !important;
   border: 1px solid var(--border) !important;
   border-radius: 14px !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.72) !important;
@@ -865,69 +864,126 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .cl-navbar {
-  background: var(--app-dark-deep) !important;
+  background: var(--muted) !important;
   border-right: 1px solid var(--border) !important;
 }
 
 .cl-pageScrollBox,
 .cl-scrollBox {
-  background: var(--app-dark-200) !important;
+  background: var(--background) !important;
 }
 
-/* UserProfile modal: Upload, Primary badge, secondary buttons (contrast on dark) */
+.cl-modalContent .cl-header {
+  border-bottom: 1px solid var(--border) !important;
+  padding: 1rem 1.25rem !important;
+  background: var(--background) !important;
+}
+
+.cl-modalContent .cl-headerTitle,
+.cl-modalContent header h1 {
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--foreground) !important;
+}
+
+.cl-modalContent .cl-headerSubtitle {
+  color: var(--muted-foreground) !important;
+}
+
+.cl-modalContent .cl-modalCloseButton {
+  border-radius: 0.375rem !important;
+  border: 1px solid var(--border) !important;
+  background: transparent !important;
+  color: var(--muted-foreground) !important;
+}
+
+.cl-modalContent .cl-modalCloseButton:hover {
+  color: var(--foreground) !important;
+  background: color-mix(in oklch, var(--foreground) 6%, transparent) !important;
+}
+
+.cl-modalContent .cl-navbarButton {
+  border-radius: 0.5rem !important;
+  border: 1px solid transparent !important;
+}
+
+.cl-modalContent .cl-navbarButton:hover {
+  background: color-mix(in oklch, var(--foreground) 6%, transparent) !important;
+  border-color: var(--border) !important;
+}
+
+.cl-modalContent .cl-navbarButton svg,
+.cl-modalContent .cl-navbarItem svg {
+  stroke-width: 1.5 !important;
+}
+
+.cl-modalContent .cl-navbarButton svg {
+  color: var(--muted-foreground) !important;
+}
+
+.cl-modalContent .cl-navbarButton:hover svg {
+  color: var(--foreground) !important;
+}
+
+.cl-modalContent .cl-profileSection {
+  border-color: var(--border) !important;
+}
+
+.cl-modalContent .cl-profileSectionTitle {
+  color: var(--foreground) !important;
+}
+
+.cl-modalContent .cl-profileSectionSubtitle {
+  color: var(--muted-foreground) !important;
+}
+
 .cl-modalContent .cl-avatarImageActionsUpload {
-  color: #e2e8f0 !important;
-  border-color: rgba(148, 163, 184, 0.5) !important;
-  background-color: rgba(148, 163, 184, 0.12) !important;
+  color: var(--foreground) !important;
+  border: 1px solid var(--border) !important;
+  background: transparent !important;
+  border-radius: 0.375rem !important;
 }
 
 .cl-modalContent .cl-avatarImageActionsUpload:hover {
-  color: #ffffff !important;
-  background-color: rgba(148, 163, 184, 0.2) !important;
+  background: color-mix(in oklch, var(--foreground) 8%, transparent) !important;
+}
+
+.cl-modalContent .cl-badge {
+  border-radius: 0.375rem !important;
 }
 
 .cl-modalContent .cl-badge,
-.cl-modalContent [class*="cl-badge"]:not([class*="Icon"]),
-.cl-modalContent [class*="badge" i]:not([class*="Icon"]) {
-  color: #f8fafc !important;
-  background-color: rgba(63, 63, 70, 0.55) !important;
-  border: 1px solid rgba(161, 161, 170, 0.45) !important;
-}
-
-.cl-modalContent .cl-profileSectionItem [class*="badge" i] {
-  color: #f8fafc !important;
-  background-color: rgba(63, 63, 70, 0.55) !important;
-  border: 1px solid rgba(161, 161, 170, 0.45) !important;
+.cl-modalContent .cl-badge__primary {
+  color: var(--foreground) !important;
+  background: color-mix(in oklch, var(--foreground) 8%, transparent) !important;
+  border: 1px solid var(--border) !important;
 }
 
 .cl-modalContent .cl-formButtonReset {
-  color: #cbd5e1 !important;
+  color: var(--muted-foreground) !important;
 }
 
 .cl-modalContent .cl-button[data-variant="secondary"],
 .cl-modalContent .cl-button[data-variant="ghost"] {
-  color: #e2e8f0 !important;
+  color: var(--foreground) !important;
 }
 
 .cl-modalContent .cl-button[data-variant="secondary"]:hover,
 .cl-modalContent .cl-button[data-variant="ghost"]:hover {
-  color: #ffffff !important;
-  background-color: rgba(255, 255, 255, 0.08) !important;
+  background: color-mix(in oklch, var(--foreground) 8%, transparent) !important;
 }
 
-/* Dev-instance footer: replace striped watermark with solid bar */
-.cl-modalContent [class*="cl-internal"] {
-  background-image: none !important;
-}
-
+/* Modal + nested drawers (Update profile): footers get consistent padding — not sign-in footers */
 .cl-modalContent .cl-footer,
 .cl-modalContent footer {
-  background-color: var(--app-dark-deep) !important;
+  background: var(--muted) !important;
+  border-top: 1px solid var(--border) !important;
+  padding: 1rem 1.25rem !important;
 }
 
-/* Manage account modal — sidebar “Secured by / Development mode” strip */
+/* Sidebar dev strip: remove hatch only */
 .cl-navbar [class*="cl-internal"] {
-  background-color: var(--app-dark-deep) !important;
   background-image: none !important;
 }
 
