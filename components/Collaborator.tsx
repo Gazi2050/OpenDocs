@@ -75,25 +75,25 @@ export default function Collaborator({
           className="size-9 rounded-full"
         />
         <div>
-          <p className="line-clamp-1 text-sm font-semibold leading-4 text-white">
+          <p className="line-clamp-1 text-sm font-semibold leading-4 text-foreground">
             {collaborator.name}
-            <span className="text-10-regular pl-2 text-muted-soft">
+            <span className="text-10-regular pl-2 text-muted-foreground">
               {loading && "updating..."}
             </span>
           </p>
           {error ? (
-            <p className="text-xs text-red-400" role="alert">
+            <p className="text-xs text-destructive" role="alert">
               {error}
             </p>
           ) : null}
-          <p className="text-sm font-light text-muted-soft">
+          <p className="text-sm font-light text-muted-foreground">
             {collaborator.email}
           </p>
         </div>
       </div>
 
       {creatorId === collaborator.id ? (
-        <p className="text-sm text-muted-soft">Owner</p>
+        <p className="text-sm text-muted-foreground">Owner</p>
       ) : (
         <div className="flex items-center gap-2">
           <UserTypeSelector

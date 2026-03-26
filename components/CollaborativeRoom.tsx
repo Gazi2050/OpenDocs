@@ -96,7 +96,7 @@ export default function CollaborativeRoom({
                 <button
                   type="button"
                   onClick={() => setEditing(true)}
-                  className="cursor-pointer rounded p-0.5 text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                  className="cursor-pointer rounded p-0.5 text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                   aria-label="Edit document title"
                 >
                   <Pencil className="size-6" aria-hidden strokeWidth={2} />
@@ -108,7 +108,7 @@ export default function CollaborativeRoom({
               )}
 
               {loading && (
-                <p className="text-sm text-gray-400">saving...</p>
+                <p className="text-sm text-muted-foreground">saving...</p>
               )}
             </div>
             <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">

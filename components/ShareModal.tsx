@@ -104,7 +104,7 @@ export default function ShareModal({
       <DialogTrigger asChild>
         <Button
           type="button"
-          className="gradient-accent flex h-9 gap-1 px-4"
+          className="gradient-primary-cta flex h-9 gap-1 px-4"
           disabled={currentUserType !== "editor"}
         >
           <Share2
@@ -123,11 +123,11 @@ export default function ShareModal({
           </DialogDescription>
         </DialogHeader>
 
-        <Label htmlFor="email" className="mt-6 text-muted-soft">
+        <Label htmlFor="email" className="mt-6 text-muted-foreground">
           Email address
         </Label>
         <div className="flex items-center gap-3">
-          <div className="flex flex-1 rounded-md bg-dark-400">
+          <div className="flex flex-1 rounded-md border border-border bg-muted">
             <Input
               id="email"
               placeholder="Enter email address"
@@ -143,7 +143,7 @@ export default function ShareModal({
           <Button
             type="button"
             onClick={shareDocumentHandler}
-            className="gradient-accent flex h-full gap-1 px-5"
+            className="gradient-primary-cta flex h-full gap-1 px-5"
             disabled={loading}
           >
             {loading ? "Sending..." : "Invite"}
@@ -151,7 +151,7 @@ export default function ShareModal({
         </div>
 
         {error ? (
-          <p className="text-sm text-red-400" role="alert">
+          <p className="text-sm text-destructive" role="alert">
             {error}
           </p>
         ) : null}

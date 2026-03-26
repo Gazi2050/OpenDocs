@@ -34,13 +34,13 @@ export default function Notifications() {
           className="relative flex size-10 items-center justify-center rounded-lg outline-none"
         >
           <Bell
-            className="size-6 text-white/90"
+            className="size-6 text-foreground"
             aria-hidden
             strokeWidth={2}
           />
           <span className="sr-only">Notifications</span>
           {count > 0 && (
-            <div className="absolute right-2 top-2 z-20 size-2 rounded-full bg-zinc-500" />
+            <div className="absolute right-2 top-2 z-20 size-2 rounded-full bg-primary" />
           )}
         </button>
       </PopoverTrigger>
@@ -54,7 +54,7 @@ export default function Notifications() {
         >
           <InboxNotificationList>
             {unreadNotifications.length <= 0 && (
-              <p className="py-2 text-center text-dark-500">
+              <p className="py-2 text-center text-muted-foreground">
                 No notifications yet
               </p>
             )}
@@ -64,7 +64,7 @@ export default function Notifications() {
                 <InboxNotification
                   key={inboxNotification.id}
                   inboxNotification={inboxNotification}
-                  className="bg-dark-200 text-white"
+                  className="bg-card text-foreground"
                   href={`/documents/${inboxNotification.roomId}`}
                   showActions={false}
                   kinds={{

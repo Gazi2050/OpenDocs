@@ -26,7 +26,7 @@ export default function Header({ children, className }: HeaderProps) {
           className="size-8 object-contain md:hidden"
           priority
         />
-        <span className="text-lg font-semibold tracking-tight text-white md:text-xl">
+        <span className="text-lg font-semibold tracking-tight text-foreground md:text-xl">
           OpenDocs
         </span>
       </Link>

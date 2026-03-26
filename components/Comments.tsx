@@ -15,7 +15,7 @@ function ThreadWrapper({ thread }: ThreadWrapperProps) {
       data-state={isActive ? "active" : null}
       className={cn(
         "comment-thread border",
-        isActive && "!border-zinc-500 shadow-md",
+        isActive && "!border-ring shadow-md",
         thread.resolved && "opacity-40"
       )}
     />

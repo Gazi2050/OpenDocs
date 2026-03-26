@@ -41,6 +41,7 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-destructive-foreground: var(--destructive-foreground);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -51,16 +52,19 @@
   /* From old tailwind.config.ts */
   --breakpoint-xs: 22.5rem;
   --breakpoint-2xl: 87.5rem;
-  /* Neutral accent scale (replaces blue-tinted palette) */
-  --color-muted-soft: #94a3b8;
-  --color-red-400: #dd4f56;
-  --color-red-500: #dc4349;
-  --color-dark-100: #09090b;
-  --color-dark-200: #0c0e11;
-  --color-dark-300: #18181b;
-  --color-dark-350: #1f1f23;
-  --color-dark-400: #3f3f46;
-  --color-dark-500: #52525b;
+  /* App scale — maps to CSS vars in :root (single source of truth) */
+  --color-muted-soft: var(--app-muted-soft);
+  --color-red-400: var(--app-red-400);
+  --color-red-500: var(--app-red-500);
+  --color-dark-100: var(--app-dark-100);
+  --color-dark-200: var(--app-dark-200);
+  --color-dark-300: var(--app-dark-300);
+  --color-dark-350: var(--app-dark-350);
+  --color-dark-400: var(--app-dark-400);
+  --color-dark-500: var(--app-dark-500);
+  --color-dark-deep: var(--app-dark-deep);
+  /* Dialog surfaces (replaces harsh blue-tinted doc bg); optional texture via --background-image-doc */
+  --color-doc: var(--card);
   --background-image-doc: url(/assets/images/doc.png);
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -84,74 +88,92 @@
   }
 }
 
-/* OpenDocs: dark shell aligned with migrated app */
+/*
+ * OpenDocs color system — soft neutral dark (zinc-like), not pure black.
+ * Semantic: destructive = red; neutral chrome = gray scale; surfaces stack from page → card → raised.
+ * Hex mirrors for Clerk: lib/clerk-appearance.ts (keep in sync).
+ */
 :root {
-  --background: #09090b;
-  --foreground: #fff;
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  /* Raw scale (aligned with shadcn tokens below) */
+  --app-dark-100: oklch(0.215 0.006 270);
+  --app-dark-deep: oklch(0.195 0.006 270);
+  --app-dark-200: oklch(0.248 0.007 270);
+  --app-dark-300: oklch(0.30 0.008 270);
+  --app-dark-350: oklch(0.335 0.009 270);
+  --app-dark-400: oklch(0.44 0.012 270);
+  --app-dark-500: oklch(0.54 0.012 270);
+  --app-muted-soft: oklch(0.72 0.02 270);
+  --app-red-400: oklch(0.68 0.2 25);
+  --app-red-500: oklch(0.62 0.2 25);
+
+  --background: var(--app-dark-100);
+  --foreground: oklch(0.955 0.008 270);
+  --card: oklch(0.235 0.008 270);
+  --card-foreground: oklch(0.985 0.006 270);
+  --popover: oklch(0.245 0.008 270);
+  --popover-foreground: oklch(0.985 0.006 270);
+  --primary: oklch(0.922 0.006 270);
+  --primary-foreground: oklch(0.22 0.02 270);
+  --secondary: oklch(0.32 0.01 270);
+  --secondary-foreground: oklch(0.96 0.006 270);
+  --muted: oklch(0.30 0.006 270);
+  --muted-foreground: oklch(0.72 0.02 270);
+  --accent: oklch(0.34 0.01 270);
+  --accent-foreground: oklch(0.985 0.006 270);
+  --destructive: oklch(0.62 0.2 25);
+  --destructive-foreground: oklch(0.985 0.01 25);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.58 0.02 270);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.235 0.008 270);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.55 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent: oklch(0.32 0.01 270);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.58 0.02 270);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --background: var(--app-dark-100);
+  --foreground: oklch(0.955 0.008 270);
+  --card: oklch(0.235 0.008 270);
+  --card-foreground: oklch(0.985 0.006 270);
+  --popover: oklch(0.245 0.008 270);
+  --popover-foreground: oklch(0.985 0.006 270);
+  --primary: oklch(0.922 0.006 270);
+  --primary-foreground: oklch(0.22 0.02 270);
+  --secondary: oklch(0.32 0.01 270);
+  --secondary-foreground: oklch(0.96 0.006 270);
+  --muted: oklch(0.30 0.006 270);
+  --muted-foreground: oklch(0.72 0.02 270);
+  --accent: oklch(0.34 0.01 270);
+  --accent-foreground: oklch(0.985 0.006 270);
+  --destructive: oklch(0.62 0.2 25);
+  --destructive-foreground: oklch(0.985 0.01 25);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.58 0.02 270);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
+  --sidebar: oklch(0.235 0.008 270);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.55 0 0);
   --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent: oklch(0.32 0.01 270);
   --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.58 0.02 270);
 }
 
 @layer base {
@@ -172,14 +194,14 @@
     border-radius: 50px;
   }
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: #09090a;
+    background: var(--app-dark-deep);
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #3f3f46;
+    background: var(--app-dark-400);
     border-radius: 50px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #71717a;
+    background: var(--app-dark-500);
   }
 }
 
@@ -191,15 +213,38 @@
     @apply text-[10px] font-normal;
   }
 
-  .gradient-accent {
-    @apply bg-linear-to-t from-zinc-600 to-zinc-500 text-white;
+  /* Primary CTA — neutral zinc/light gray on dark UI (uses --primary tokens) */
+  .gradient-primary-cta {
+    @apply bg-linear-to-b from-primary to-primary/90 text-primary-foreground shadow-sm;
   }
+  /** @deprecated alias for .gradient-primary-cta */
+  .gradient-accent {
+    @apply bg-linear-to-b from-primary to-primary/90 text-primary-foreground shadow-sm;
+  }
+  /* Destructive confirmation / delete — red with consistent accent */
+  .gradient-destructive {
+    @apply bg-linear-to-b from-destructive to-destructive/90 text-destructive-foreground shadow-sm;
+  }
+  /** @deprecated alias for .gradient-destructive */
   .gradient-red {
-    @apply bg-linear-to-t from-red-500 to-red-400 text-white;
+    @apply bg-linear-to-b from-destructive to-destructive/90 text-destructive-foreground shadow-sm;
+  }
+
+  .surface-page {
+    @apply bg-background text-foreground;
+  }
+  .surface-card {
+    @apply bg-card text-card-foreground border border-border;
+  }
+  .surface-raised {
+    @apply bg-muted text-foreground border border-border;
+  }
+  .text-muted-app {
+    @apply text-muted-foreground;
   }
 
   .shad-dialog {
-    @apply !w-full !max-w-[400px] !rounded-xl !border-none !bg-doc !bg-cover !px-5 !py-7 !shadow-xl sm:!min-w-[500px];
+    @apply !w-full !max-w-[400px] !rounded-xl !border !border-border !bg-doc !bg-cover !px-5 !py-7 !shadow-xl sm:!min-w-[500px];
   }
 
   .shad-dialog button {
@@ -207,7 +252,7 @@
   }
 
   .shad-select {
-    @apply !w-fit !border-none !bg-transparent !text-muted-soft;
+    @apply !w-fit !border-none !bg-transparent !text-muted-foreground;
   }
 
   .shad-select svg {
@@ -215,15 +260,15 @@
   }
 
   .shad-select-item {
-    @apply !cursor-pointer !bg-dark-200 !text-muted-soft focus:!bg-dark-300 hover:!bg-dark-300 focus:!text-muted-soft;
+    @apply !cursor-pointer !bg-card !text-muted-foreground focus:!bg-muted hover:!bg-muted focus:!text-foreground;
   }
 
   .shad-popover {
-    @apply !w-[460px] !border-none !bg-dark-200 !shadow-lg;
+    @apply !w-[460px] !border !border-border !bg-popover !shadow-lg;
   }
 
   .floating-toolbar {
-    @apply flex w-full min-w-max items-center justify-center gap-2 rounded-lg bg-dark-350 p-1.5 shadow-xl;
+    @apply flex w-full min-w-max items-center justify-center gap-2 rounded-lg border border-border bg-muted p-1.5 shadow-xl;
   }
 
   .floating-toolbar-btn {
@@ -231,7 +276,7 @@
   }
 
   .toolbar-wrapper {
-    @apply z-50 w-screen overflow-auto border-y border-dark-300 bg-dark-100 pl-3 pr-4 shadow-sm;
+    @apply z-50 w-screen overflow-auto border-y border-border bg-background pl-3 pr-4 shadow-sm;
   }
   .toolbar-wrapper::-webkit-scrollbar,
   .editor-wrapper::-webkit-scrollbar {
@@ -241,16 +286,16 @@
   }
   .toolbar-wrapper::-webkit-scrollbar-track,
   .editor-wrapper::-webkit-scrollbar-track {
-    background: #09090a;
+    background: var(--app-dark-deep);
   }
   .toolbar-wrapper::-webkit-scrollbar-thumb,
   .editor-wrapper::-webkit-scrollbar-thumb {
-    background: #3f3f46;
+    background: var(--app-dark-400);
     border-radius: 50px;
   }
   .toolbar-wrapper::-webkit-scrollbar-thumb:hover,
   .editor-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #71717a;
+    background: var(--app-dark-500);
   }
 
   .editor-wrapper {
@@ -258,7 +303,7 @@
   }
 
   .header {
-    @apply min-h-[92px] min-w-full flex-nowrap bg-dark-100 flex w-full items-center justify-between gap-2 px-4;
+    @apply min-h-[92px] min-w-full flex-nowrap bg-background flex w-full items-center justify-between gap-2 border-b border-border px-4;
   }
 
   .document-list-container {
@@ -270,23 +315,23 @@
   }
 
   .document-list-item {
-    @apply flex items-center justify-between gap-4 rounded-lg bg-doc bg-cover p-5 shadow-xl;
+    @apply flex items-center justify-between gap-4 rounded-lg border border-border bg-card p-5 text-card-foreground shadow-xl;
   }
 
   .document-list-empty {
-    @apply flex w-full max-w-[730px] flex-col items-center justify-center gap-5 rounded-lg bg-dark-200 px-10 py-8;
+    @apply flex w-full max-w-[730px] flex-col items-center justify-center gap-5 rounded-lg border border-border bg-card px-10 py-8;
   }
 
   .document-title-input {
-    @apply !min-w-[78px] !flex-1 !border-none !bg-transparent !px-0 !text-left !text-base !font-semibold !leading-[24px] focus-visible:!ring-0 focus-visible:!ring-offset-0 disabled:!text-black sm:!text-xl md:!text-center;
+    @apply !min-w-[78px] !flex-1 !border-none !bg-transparent !px-0 !text-left !text-base !font-semibold !leading-[24px] focus-visible:!ring-0 focus-visible:!ring-offset-0 disabled:!text-muted-foreground sm:!text-xl md:!text-center;
   }
 
   .document-title {
-    @apply line-clamp-1 border-dark-400 text-base font-semibold leading-[24px] sm:pl-0 sm:text-xl;
+    @apply line-clamp-1 border-border text-base font-semibold leading-[24px] sm:pl-0 sm:text-xl;
   }
 
   .view-only-tag {
-    @apply rounded-md bg-dark-400/50 px-2 py-0.5 text-xs text-muted-soft/50;
+    @apply rounded-md bg-muted px-2 py-0.5 text-xs text-muted-foreground/80;
   }
 
   .collaborators-list {
@@ -294,11 +339,11 @@
   }
 
   .share-input {
-    @apply !h-11 !flex-1 !border-none !bg-dark-400 focus-visible:!ring-0 focus-visible:!ring-offset-0;
+    @apply !h-11 !flex-1 !border-none !bg-transparent focus-visible:!ring-0 focus-visible:!ring-offset-0;
   }
 
   .remove-btn {
-    @apply rounded-lg bg-transparent px-0 text-red-500 hover:bg-transparent;
+    @apply rounded-lg bg-transparent px-0 text-destructive hover:bg-transparent hover:text-destructive/90;
   }
 
   .comments-container {
@@ -306,15 +351,15 @@
   }
 
   .comment-composer {
-    @apply w-full max-w-[800px] border border-dark-300 bg-dark-200 shadow-sm lg:w-[350px];
+    @apply w-full max-w-[800px] border border-border bg-card shadow-sm lg:w-[350px];
   }
 
   .comment-thread {
-    @apply w-full max-w-[800px] border border-dark-300 bg-dark-200 shadow-sm lg:w-[350px] transition-all;
+    @apply w-full max-w-[800px] border border-border bg-card shadow-sm lg:w-[350px] transition-all;
   }
 
   .loader {
-    @apply flex size-full h-screen items-center justify-center gap-3 text-white;
+    @apply flex size-full h-screen items-center justify-center gap-3 text-foreground;
   }
 
   .auth-page {
@@ -382,7 +427,7 @@
 }
 
 .editor-inner {
-  background: #0c0e11;
+  background: var(--app-dark-200);
   position: relative;
 }
 
@@ -390,16 +435,16 @@
   min-height: 400px;
   resize: none;
   font-size: 15px;
-  caret-color: #52525b;
+  caret-color: var(--app-dark-500);
   position: relative;
   tab-size: 1;
   outline: 0;
   padding: 40px;
-  color: #cbd5e1;
+  color: oklch(0.9 0.015 270);
 }
 
 .editor-placeholder {
-  color: #94a3b8;
+  color: var(--app-muted-soft);
   overflow: hidden;
   position: absolute;
   text-overflow: ellipsis;
@@ -642,12 +687,12 @@ pre::-webkit-scrollbar-thumb {
 .toolbar {
   display: flex;
   margin-bottom: 1px;
-  background: #09090b;
+  background: var(--app-dark-100);
   padding: 4px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   vertical-align: middle;
-  color: rgb(226 232 240);
+  color: oklch(0.92 0.01 270);
 }
 
 .toolbar button.toolbar-item {
@@ -681,7 +726,7 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .toolbar button.toolbar-item.active {
-  background-color: #18181b;
+  background-color: var(--app-dark-300);
 }
 
 .toolbar button.toolbar-item.active svg.toolbar-icon {
@@ -689,12 +734,12 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .toolbar .toolbar-item:hover:not([disabled]) {
-  background-color: #18181b;
+  background-color: var(--app-dark-300);
 }
 
 .toolbar .divider {
   width: 1px;
-  background-color: #18181b;
+  background-color: var(--app-dark-300);
   margin: 0 4px;
 }
 
@@ -740,7 +785,7 @@ pre::-webkit-scrollbar-thumb {
 .cl-signIn-start,
 .cl-signUp-start,
 .cl-footer {
-  background: #050506;
+  background: var(--app-dark-deep);
   box-shadow: none;
   padding: 20px;
 }
@@ -748,8 +793,8 @@ pre::-webkit-scrollbar-thumb {
 .cl-socialButtonsBlockButton,
 .cl-socialButtonsBlockButton:hover {
   height: 40px;
-  background-color: #3f3f46;
-  color: #fff;
+  background-color: var(--app-dark-400);
+  color: var(--foreground);
 }
 
 .cl-internal-2gzuzc {
@@ -761,18 +806,18 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .cl-userButtonPopoverCard {
-  background: #0c0e11 !important;
-  border: 1px solid #27272a !important;
+  background: var(--app-dark-200) !important;
+  border: 1px solid var(--border) !important;
 }
 
 .cl-userButtonPopoverMain {
-  background: #0c0e11 !important;
+  background: var(--app-dark-200) !important;
 }
 
 .cl-userButtonPopoverFooter {
-  background: #050506 !important;
+  background: var(--app-dark-deep) !important;
   background-image: none !important;
-  border-top: 1px solid #27272a !important;
+  border-top: 1px solid var(--border) !important;
 }
 
 /* UserButton popover: strip Clerk dev-instance diagonal hatch (same as modal internals) */
@@ -782,7 +827,7 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .cl-userButtonPopoverFooter [class*="cl-internal"] {
-  background-color: #050506 !important;
+  background-color: var(--app-dark-deep) !important;
   background-image: none !important;
 }
 
@@ -806,13 +851,13 @@ pre::-webkit-scrollbar-thumb {
 
 /* Clerk UserButton → Manage account (full-screen / large modal) */
 .cl-modalBackdrop {
-  background: rgba(6, 13, 24, 0.82) !important;
+  background: oklch(0.12 0.02 270 / 0.78) !important;
   backdrop-filter: blur(8px);
 }
 
 .cl-modalContent {
-  background: #0c0e11 !important;
-  border: 1px solid #27272a !important;
+  background: var(--app-dark-200) !important;
+  border: 1px solid var(--border) !important;
   border-radius: 14px !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.72) !important;
   overflow: hidden !important;
@@ -820,13 +865,13 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .cl-navbar {
-  background: #050506 !important;
-  border-right: 1px solid #27272a !important;
+  background: var(--app-dark-deep) !important;
+  border-right: 1px solid var(--border) !important;
 }
 
 .cl-pageScrollBox,
 .cl-scrollBox {
-  background: #0c0e11 !important;
+  background: var(--app-dark-200) !important;
 }
 
 /* UserProfile modal: Upload, Primary badge, secondary buttons (contrast on dark) */
@@ -877,37 +922,37 @@ pre::-webkit-scrollbar-thumb {
 
 .cl-modalContent .cl-footer,
 .cl-modalContent footer {
-  background-color: #050506 !important;
+  background-color: var(--app-dark-deep) !important;
 }
 
 /* Manage account modal — sidebar “Secured by / Development mode” strip */
 .cl-navbar [class*="cl-internal"] {
-  background-color: #050506 !important;
+  background-color: var(--app-dark-deep) !important;
   background-image: none !important;
 }
 
 /* ======================== Liveblocks Override */
 .lb-root {
-  --lb-accent-subtle: #0c0e11;
+  --lb-accent-subtle: var(--app-dark-200);
   --lb-radius: 0px;
-  --lb-dynamic-background: #27272a;
+  --lb-dynamic-background: var(--app-dark-400);
 }
 
 .lb-comment,
 .lb-thread-comments,
 .lb-composer,
 .lb-comment-reaction {
-  background-color: #18181b;
-  color: #fff;
+  background-color: var(--app-dark-300);
+  color: var(--foreground);
 }
 
 .lb-button {
-  --lb-foreground-moderate: #fff;
+  --lb-foreground-moderate: var(--foreground);
 }
 
 .lb-button:where([data-variant="primary"]) {
-  background-color: #1f1f23;
-  color: #cbd5e1;
+  background-color: var(--app-dark-350);
+  color: oklch(0.9 0.015 270);
   padding: 8px;
 }
 
@@ -921,7 +966,7 @@ pre::-webkit-scrollbar-thumb {
           )
       )
   ) {
-  color: #cbd5e1;
+  color: oklch(0.9 0.015 270);
 }
 
 .lb-button:where(
@@ -930,8 +975,8 @@ pre::-webkit-scrollbar-thumb {
     [aria-expanded="true"],
     [aria-selected="true"]
   ) {
-  --lb-button-background: #1f1f23;
-  color: #cbd5e1;
+  --lb-button-background: var(--app-dark-350);
+  color: oklch(0.9 0.015 270);
 }
 
 .lb-inbox-notification-list-item:where(:not(:last-of-type)) {
@@ -942,7 +987,7 @@ pre::-webkit-scrollbar-thumb {
 .lb-dropdown-item,
 .lb-dropdown-item-icon,
 .lb-composer-editor {
-  color: #fff;
+  color: var(--foreground);
 }
 
 .lb-composer-action {
@@ -950,7 +995,7 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .lb-comment-content {
-  background: #0c0e11;
+  background: var(--app-dark-200);
   margin-top: 16px;
   padding: 12px;
   border-radius: 4px;
@@ -965,20 +1010,20 @@ pre::-webkit-scrollbar-thumb {
 .lb-emoji-picker-search-icon,
 .lb-emoji-picker-category-header-title,
 .lb-emoji-picker-search::placeholder {
-  color: #94a3b8;
+  color: var(--app-muted-soft);
 }
 
 .data-liveblocks-portal {
-  color: #94a3b8 !important;
+  color: var(--app-muted-soft) !important;
 }
 
 .lb-root:where(:not(.lb-root .lb-root)) {
-  --lb-dynamic-background: #27272a;
-  color: #fff;
+  --lb-dynamic-background: var(--app-dark-400);
+  color: var(--foreground);
 }
 
 .lb-composer-editor :where([data-placeholder]) {
-  color: #94a3b8;
+  color: var(--app-muted-soft);
   font-size: 14px;
 }
 
@@ -987,5 +1032,5 @@ pre::-webkit-scrollbar-thumb {
 }
 
 .lb-elevation {
-  background: #18181b;
+  background: var(--app-dark-300);
 }

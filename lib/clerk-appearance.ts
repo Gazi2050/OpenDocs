@@ -1,9 +1,12 @@
 import { dark } from "@clerk/ui/themes";
 
-/** Matches OpenDocs shell (`globals.css` dark surfaces). */
-const shell = "#0c0e11";
-const deep = "#050506";
-const border = "#27272a";
+/**
+ * Hex mirrors of `app/globals.css` `--app-*` surfaces (keep in sync when tuning tokens).
+ * Prefer neutral chrome + soft contrast; destructive accents stay red.
+ */
+const shell = "#171b22"; /* app-dark-200 — panels, modals */
+const deep = "#0f1318"; /* app-dark-deep — footer, inputs, sidebars */
+const border = "#2e3338"; /* ~12% white on dark — matches --border feel */
 
 /**
  * Clerk `UserButton` → Manage account modal, sign-in/up, and popover styling.
@@ -11,19 +14,19 @@ const border = "#27272a";
 export const clerkAppearance = {
   theme: dark,
   variables: {
-    colorPrimary: "#a1a1aa",
+    colorPrimary: "#d4d4d8",
     fontSize: "16px",
     colorBackground: shell,
     colorInput: deep,
-    colorInputForeground: "#f1f5f9",
-    colorForeground: "#f8fafc",
-    colorMuted: "rgba(148, 163, 184, 0.12)",
-    colorMutedForeground: "#94a3b8",
+    colorInputForeground: "#e8e8ec",
+    colorForeground: "#f4f4f5",
+    colorMuted: "rgba(148, 163, 184, 0.14)",
+    colorMutedForeground: "#a1a1aa",
     colorNeutral: "rgba(255, 255, 255, 0.14)",
   },
   elements: {
     modalBackdrop: {
-      backgroundColor: "rgba(6, 13, 24, 0.82)",
+      backgroundColor: "oklch(0.12 0.02 270 / 0.78)",
       backdropFilter: "blur(8px)",
     },
     modalContent: {
@@ -54,10 +57,10 @@ export const clerkAppearance = {
       backgroundColor: shell,
     },
     headerTitle: {
-      color: "#f8fafc",
+      color: "#f4f4f5",
     },
     headerSubtitle: {
-      color: "#94a3b8",
+      color: "#a1a1aa",
     },
     main: {
       backgroundColor: shell,
@@ -77,7 +80,7 @@ export const clerkAppearance = {
       color: "#f1f5f9",
     },
     profileSectionSubtitleText: {
-      color: "#94a3b8",
+      color: "#a1a1aa",
     },
     avatarImageActions: {
       gap: "0.5rem",

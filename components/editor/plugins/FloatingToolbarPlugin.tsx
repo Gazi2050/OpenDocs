@@ -122,7 +122,7 @@ function Toolbar({
           className="floating-toolbar-btn"
         >
           <MessageSquare
-            className="size-6 text-white"
+            className="size-6 text-foreground"
             aria-hidden
             strokeWidth={2}
           />
