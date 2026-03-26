@@ -61,9 +61,10 @@ export default async function HomePage() {
                     href={`/documents/${id}`}
                     className="flex flex-1 items-center gap-4"
                   >
-                    <div className="hidden rounded-md bg-dark-500 p-2 sm:block">
+                    <div className="flex size-12 shrink-0 items-center justify-center rounded-md border border-border bg-transparent">
                       <FileText
-                        className="size-10 text-muted-foreground"
+                        className="size-6 text-muted-foreground"
+                        strokeWidth={1.75}
                         aria-hidden="true"
                       />
                     </div>
@@ -82,10 +83,13 @@ export default async function HomePage() {
         </div>
       ) : (
         <div className="document-list-empty">
-          <FileText
-            className="mx-auto size-10 text-muted-foreground"
-            aria-hidden="true"
-          />
+          <div className="mx-auto flex size-14 items-center justify-center rounded-md border border-border bg-transparent">
+            <FileText
+              className="size-7 text-muted-foreground"
+              strokeWidth={1.75}
+              aria-hidden="true"
+            />
+          </div>
           <AddDocumentBtn userId={clerkUser.id} email={email} />
         </div>
       )}
