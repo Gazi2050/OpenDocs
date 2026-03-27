@@ -81,3 +81,10 @@ pnpm dev
 pnpm build
 pnpm start
 ```
+
+## ℹ️ Notes
+
+- 🖊️ **Roles:** **Editors** can change the text and layout; **viewers** can open the document and follow along but not edit.
+- ✉️ **Sharing:** People only appear in a document after someone with access invites them by email—your list on the home page is the rooms you’re allowed to use.
+- 🔄 **In the room:** Edits and cursors update live for everyone there, and you can leave comments and threads tied to the content while you work.
+
