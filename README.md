@@ -81,14 +81,3 @@ pnpm dev
 pnpm build
 pnpm start
 ```
-
-## ℹ️ Notes
-
-- 🔒 **Access:** Opening a document checks room membership and the signed-in user’s email.
-- 🗄️ **Rooms:** Creating, renaming, sharing, and deleting documents use server-side APIs; the browser connects through the provider configured in this project.
-- 🖼️ **Avatars:** Remote profile URLs are allowed for image optimization in app configuration.
-- ✅ **Lint:** `pnpm lint` runs ESLint.
-
-## 📄 License
-
-This project is private unless you add an explicit license file.
