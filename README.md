@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://ik.imagekit.io/uc8ejfj1j/drop-folder/opendocs-banner_RBtq6GI5B.jpg" alt="OpenDocs banner" width="900" />
+  <img src="https://ik.imagekit.io/uc8ejfj1j/drop-folder/Screenshot_from_2026-03-27_15-52-00_uwydghgVI.png" alt="OpenDocs banner" width="900" />
 </p>
 
 > ### Welcome to **OpenDocs** — a collaborative document workspace built with Next.js. Create and edit rich text in real time, share rooms with fine-grained access, and keep your team in sync with presence, comments, and threads.
