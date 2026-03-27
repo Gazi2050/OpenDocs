@@ -69,23 +69,13 @@ NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY=<public_api_key>
 LIVEBLOCKS_SECRET_KEY=<secret_key>
 ```
 
-4. **Authentication dashboard**
-
-- Create an application and add sign-in/sign-up URLs to match this app (defaults: `/sign-in`, `/sign-up`).
-- Enable profile images if you want avatars in the UI.
-
-5. **Collaboration dashboard**
-
-- Create a project and add the public and secret keys shown above.
-- Identity is tied to the signed-in account (primary email).
-
-6. **Run the development server**
+4. **Run the development server**
 
 ```bash
 pnpm dev
 ```
 
-7. **Build and start for production**
+5. **Build and start for production**
 
 ```bash
 pnpm build
