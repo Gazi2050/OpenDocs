@@ -87,3 +87,7 @@ pnpm start
 - 🖊️ **Roles:** **Editors** can change the text and layout; **viewers** can open the document and follow along but not edit.
 - ✉️ **Sharing:** People only appear in a document after someone with access invites them by email—your list on the home page is the rooms you’re allowed to use.
 - 🔄 **In the room:** Edits and cursors update live for everyone there, and you can leave comments and threads tied to the content while you work.
+
+## 🎨 Design
+
+- 🖼️ [Figma Design](https://www.figma.com/design/VQIupNHKq3dlhESi9IpA5F/OpenDocs---design?node-id=2-2&p=f)
