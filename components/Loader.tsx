@@ -1,14 +1,18 @@
-import { Loader2 } from "lucide-react";
+import Image from 'next/image'
 
-export default function Loader() {
+const Loader = () => {
   return (
     <div className="loader">
-      <Loader2
-        className="size-8 shrink-0 animate-spin text-foreground"
-        aria-hidden
-        strokeWidth={2}
+      <Image 
+        src="/assets/icons/loader.svg"
+        alt="loader"
+        width={32}
+        height={32}
+        className="animate-spin"
       />
       Loading...
     </div>
-  );
+  )
 }
+
+export default Loader

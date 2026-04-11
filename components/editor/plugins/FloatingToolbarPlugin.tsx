@@ -12,7 +12,7 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import { OPEN_FLOATING_COMPOSER_COMMAND } from '@liveblocks/react-lexical';
 import type { LexicalEditor, LexicalNode } from 'lexical';
 import { $getSelection, $isRangeSelection, $isTextNode } from 'lexical';
-import { MessageSquare } from 'lucide-react';
+import Image from 'next/image';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
@@ -23,10 +23,10 @@ export default function FloatingToolbar() {
   const [range, setRange] = useState<Range | null>(null);
 
   useEffect(() => {
-    return editor.registerUpdateListener(({ tags }) => {
-      editor.getEditorState().read(() => {
+    editor.registerUpdateListener(({ tags }) => {
+      return editor.getEditorState().read(() => {
         // Ignore selection updates related to collaboration
-        if (tags.has("collaboration")) return;
+        if (tags.has('collaboration')) return;
 
         const selection = $getSelection();
         if (!$isRangeSelection(selection) || selection.isCollapsed()) {
@@ -36,7 +36,7 @@ export default function FloatingToolbar() {
 
         const { anchor, focus } = selection;
 
-        const nextRange = createDOMRange(
+        const range = createDOMRange(
           editor,
           anchor.getNode(),
           anchor.offset,
@@ -44,7 +44,7 @@ export default function FloatingToolbar() {
           focus.offset,
         );
 
-        setRange(nextRange);
+        setRange(range);
       });
     });
   }, [editor]);
@@ -121,10 +121,11 @@ function Toolbar({
           }}
           className="floating-toolbar-btn"
         >
-          <MessageSquare
-            className="size-6 text-foreground"
-            aria-hidden
-            strokeWidth={2}
+          <Image
+            src="/assets/icons/comment.svg"
+            alt="comment"
+            width={24}
+            height={24}
           />
         </button>
       </div>
@@ -244,7 +245,7 @@ export function createDOMRange(
   try {
     range.setStart(anchorDOM, anchorOffset);
     range.setEnd(focusDOM, focusOffset);
-  } catch {
+  } catch (e) {
     return null;
   }
 

@@ -1,40 +1,28 @@
-"use client";
-
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import type { UserType, UserTypeSelectorParams } from "@/types/opendocs";
+} from "@/components/ui/select"
 
-export default function UserTypeSelector({
-  userType,
-  setUserType,
-  onClickHandler,
-}: UserTypeSelectorParams) {
+const UserTypeSelector = ({ userType, setUserType, onClickHandler }: UserTypeSelectorParams) => {
   const accessChangeHandler = (type: UserType) => {
     setUserType(type);
-    onClickHandler?.(type);
-  };
+    onClickHandler && onClickHandler(type);
+  }
 
   return (
-    <Select
-      value={userType}
-      onValueChange={(value) => accessChangeHandler(value as UserType)}
-    >
+    <Select value={userType} onValueChange={(type: UserType) => accessChangeHandler(type)}>
       <SelectTrigger className="shad-select">
         <SelectValue />
       </SelectTrigger>
       <SelectContent className="border-none bg-dark-200">
-        <SelectItem value="viewer" className="shad-select-item">
-          can view
-        </SelectItem>
-        <SelectItem value="editor" className="shad-select-item">
-          can edit
-        </SelectItem>
+        <SelectItem value="viewer" className="shad-select-item">can view</SelectItem>
+        <SelectItem value="editor" className="shad-select-item">can edit</SelectItem>
       </SelectContent>
     </Select>
-  );
+  )
 }
+
+export default UserTypeSelector
